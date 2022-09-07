@@ -27,15 +27,16 @@ int division(int x){
 }
 
 int to_zero_n(int x,int n){
-    int mask = 1<<31;
-    mask >>= 31-n;
+    unsigned int mask = 1<<31;
+    mask >>= (31-n+1);
     return x&~mask;
 }
 
 int main() {
-    int x;
+    int x, y;
     cin >> x;
+    cin >> y;
     cout << bitset<32>(x) << endl;
-    x = to_zero_n(x, 3);
+    x = to_zero_n(x, y);
     cout << bitset<32>(x)<< endl;
 }
