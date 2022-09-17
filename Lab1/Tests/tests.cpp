@@ -1,7 +1,5 @@
-//
-// Created by yaros on 16.09.2022.
-//
 #include <gtest/gtest.h>
+#include "../main.cpp"
 
 TEST(to_ones, test1) {
     int x = 0;
