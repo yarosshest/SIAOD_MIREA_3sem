@@ -1,11 +1,21 @@
 #include <gtest/gtest.h>
-#include "../main.cpp"
+#include "../task.cpp"
+TEST(to_ones, test) {
+    EXPECT_EQ(81921, to_ones(0));
+}
 
-TEST(to_ones, test1) {
-    int x = 0;
-    int a = 1<<16;
-    int b = 1<<14;
-    int c = 1;
-    int result = x|a|b|c;
-    EXPECT_EQ(result, to_ones(x));
+TEST(to_zeros, test) {
+    EXPECT_EQ(1009, to_zeros(1023));
+}
+
+TEST(mult, test) {
+    EXPECT_EQ(64, mult(1));
+}
+
+TEST(division, test) {
+    EXPECT_EQ(1, division(64));
+}
+
+TEST(to_zero_n, test) {
+    EXPECT_EQ(991, to_zero_n(1023, 5));
 }
