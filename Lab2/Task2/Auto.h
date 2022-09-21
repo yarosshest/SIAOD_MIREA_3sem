@@ -6,29 +6,21 @@
 #define SIAOD_AUTO_H
 
 #include <string>
+#include <vector>
 using namespace std;
-
-struct number {
-    int region;
-    int number;
-    string characters;
-};
-
-struct holder {
-    string name;
-    string surname;
-    string address;
-};
-
 class Auto {
 private:
     string model;
     string color;
     string date;
-    number num;
-    holder hold;
+    string region;
+    string num;
+    string characters;
+    string name;
+    string surname;
+    string address;
 public:
-    Auto(string model, string color, string date, number num, holder hold);
+    explicit Auto(vector<char*> data);
 };
 
 

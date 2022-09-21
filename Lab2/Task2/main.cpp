@@ -5,5 +5,6 @@ using namespace std;
 int main()
 {
     ReaderSource reader = ReaderSource();
-    reader.readSource("Source.txt");
+    vector<Auto> a =  reader.readSource();
+    cout << a.size();
 }

@@ -10,6 +10,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <stdlib.h>
 #include <stdio.h>
 using namespace std;
 
@@ -17,7 +18,7 @@ class ReaderSource {
 private:
     int length;
 public:
-    vector<Auto> readSource(const string& path);
+    vector<Auto> readSource();
 };
 
 
