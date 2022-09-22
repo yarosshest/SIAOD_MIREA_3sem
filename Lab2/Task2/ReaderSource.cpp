@@ -3,25 +3,19 @@
 //
 
 #include "ReaderSource.h"
-vector<Auto> ReaderSource::readSource()
+vector<Auto> ReaderSource::readSource(string name)
 {
     vector<Auto> result = vector<Auto>();
-    ifstream file ("Source.txt");
+    ifstream file (name);
     if (!file)
     {
-        cout << "Файл не найден\n";
+        cout << "File doesn't exist\n";
         return result;
     }
     else
     {
-        cout << "Файл открыт\n";
+        cout << "File open\n";
         string line;
-        while(true) {
-            getline(file, line);
-            if(!file.eof())
-                cout << line << endl;
-            else break;
-        }
         while ( getline (file, line) )
         {
             vector<char*> data = vector<char*>();
@@ -36,8 +30,14 @@ vector<Auto> ReaderSource::readSource()
             }
             result.emplace_back(data);
         }
-        getline (file, line);
         file.close();
         return result;
     }
+}
+
+void ReaderSource::writeSource(string name, vector<Auto> autos) {
+    ofstream file(name);
+    for (Auto i : autos)
+        file << i.toString() << endl;
+    file.close();
 }

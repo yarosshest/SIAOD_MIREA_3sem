@@ -10,6 +10,7 @@
 using namespace std;
 class Auto {
 private:
+    string id;
     string model;
     string color;
     string date;
@@ -21,6 +22,9 @@ private:
     string address;
 public:
     explicit Auto(vector<char*> data);
+    Auto();
+    string toString();
+    bool operator==(const Auto& a) const;
 };
 
 

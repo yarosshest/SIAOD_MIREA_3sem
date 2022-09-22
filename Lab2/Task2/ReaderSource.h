@@ -10,15 +10,14 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include <stdlib.h>
-#include <stdio.h>
+#include <cstdlib>
+#include <cstdio>
 using namespace std;
 
 class ReaderSource {
-private:
-    int length;
 public:
-    vector<Auto> readSource();
+    vector<Auto> readSource(string name);
+    void writeSource(string name, vector<Auto> autos);
 };
 
 
