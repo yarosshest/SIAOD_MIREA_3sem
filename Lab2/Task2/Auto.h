@@ -9,7 +9,7 @@
 #include <vector>
 using namespace std;
 class Auto {
-private:
+public:
     string id;
     string model;
     string color;
@@ -20,7 +20,6 @@ private:
     string name;
     string surname;
     string address;
-public:
     explicit Auto(vector<char*> data);
     Auto();
     string toString();

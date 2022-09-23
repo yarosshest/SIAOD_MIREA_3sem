@@ -14,7 +14,6 @@ vector<Auto> ReaderSource::readSource(string name)
     }
     else
     {
-        cout << "File open\n";
         string line;
         while ( getline (file, line) )
         {

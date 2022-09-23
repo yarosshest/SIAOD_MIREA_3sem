@@ -12,6 +12,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <cstdio>
+#include <cstring>
 using namespace std;
 
 class ReaderSource {
