@@ -16,6 +16,7 @@ class BinWriter {
 public:
     void writeBin(string name, vector<Auto> autos);
     void readBin(string name, vector<Auto> &autos);
+    void writeAuto(string name, Auto au, int index);
     void outputBin(string name);
     Auto readAuto(string name, int index);
     void dellAuto(string name, int index);

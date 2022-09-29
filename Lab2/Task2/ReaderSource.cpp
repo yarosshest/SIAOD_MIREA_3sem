@@ -22,7 +22,7 @@ vector<Auto> ReaderSource::readSource(string name)
 
             char *tmp_char = strtok(str, ";");
 
-            while (tmp_char != NULL)
+            while (tmp_char != NULL && *(tmp_char) != '\r')
             {
                 data.push_back(tmp_char);
                 tmp_char = strtok(NULL, ";");
