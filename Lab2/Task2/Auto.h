@@ -24,6 +24,7 @@ public:
     Auto();
     string toString();
     bool operator==(const Auto& a) const;
+    string out();
 };
 
 

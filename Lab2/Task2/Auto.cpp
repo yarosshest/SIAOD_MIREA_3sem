@@ -21,6 +21,10 @@ string Auto::toString() {
     return id + ";" + region + ";" + num + ";" + characters + ";" + model + ";" + color + ";" + surname + ";" + name + ";" + address + ";" + date;
 }
 
+string Auto::out() {
+    return "region:" +region + " num:" + num + " characters:" + characters + " model:" + model + " color:" + color + " surname:" + surname + " name:" + name + " address:" + address + " date:" + date;
+}
+
 bool Auto::operator==(const Auto& rhs) const {
     return id == rhs.id &&
            model == rhs.model &&
