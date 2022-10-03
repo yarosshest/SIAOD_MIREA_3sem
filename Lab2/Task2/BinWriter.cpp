@@ -49,20 +49,24 @@ void BinWriter::outputBin(string name) {
     in.close();
 }
 
-Auto BinWriter::readAuto(string name, int index) {
+Auto* BinWriter::readAuto(string name, int index) {
     ifstream in(name, ios::binary);
-    Auto tmp;
+    Auto *tmp = new Auto();
     in.seekg(index * sizeof(Auto));
-    in.read((char*)&tmp, sizeof(Auto));
+    in.read((char*)tmp, sizeof(Auto));
     in.close();
     return tmp;
 }
 
 void BinWriter::dellAuto(string name, int index) {
-    vector<Auto> autos;
-    readBin(name, autos);
-    autos.erase(autos.begin() + index);
-//    writeBin(name, autos);
+    fstream out(name, ios::binary|ios::out|ios::in);
+    uintmax_t n = filesystem::file_size(name);
+    Auto *tmp = new Auto();
+    out.seekg(n -  sizeof(Auto), ios::beg);
+    out.read((char*)tmp, sizeof(Auto));
+    out.close();
+    writeAuto(name, *tmp, index);
+    filesystem::resize_file(name, n - sizeof(Auto));
 }
 
 void BinWriter::writeAuto(string name, Auto au, int index) {

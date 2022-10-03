@@ -14,6 +14,7 @@ private:
     string name;
     string nameBin;
     int task;
+    int index;
     BinWriter bw = BinWriter();
     ReaderSource rs = ReaderSource();
     bool isExit = false;

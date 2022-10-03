@@ -36,6 +36,22 @@ void UI::start() {
                 cout << "Данные из бинарного файла " << nameBin << endl;
                 bw.outputBin(nameBin);
                 break;
+            case 4:
+                cout << "Введите название бинарного файла" << endl;
+                cin >> nameBin;
+                cout << "Введите индекс" << endl;
+                cin >> index;
+                cout << "Данные из бинарного файла " << nameBin << " по индексу " << index << endl;
+                cout <<bw.readAuto(nameBin, index)->out() << endl;
+                break;
+            case 5:
+                cout << "Введите название бинарного файла" << endl;
+                cin >> nameBin;
+                cout << "Введите индекс" << endl;
+                cin >> index;
+                cout << "Данные из бинарного файла " << nameBin << endl;
+                bw.outputBin(nameBin);
+                break;
         }
     }
 }

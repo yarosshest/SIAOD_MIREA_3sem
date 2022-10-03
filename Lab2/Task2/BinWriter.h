@@ -11,6 +11,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <cstdio>
+#include <filesystem>
 class BinWriter {
 
 public:
@@ -19,7 +20,7 @@ public:
     void readBin(string name, vector<Auto> &autos);
     void writeAuto(string name, Auto au, int index);
     void outputBin(string name);
-    Auto readAuto(string name, int index);
+    Auto* readAuto(string name, int index);
     void dellAuto(string name, int index);
     void rep(string date,string reg ,string num, string buk, string name);
     void showMod(string date,string mod ,string name);
