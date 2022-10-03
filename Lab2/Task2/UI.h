@@ -7,27 +7,27 @@
 #include <string>
 #include <iostream>
 #include "BinWriter.h"
-#include "ReaderSource.h"
 using namespace std;
 class UI {
 private:
     string name;
+    string date;
+    string buk;
+    string reg;
+    string num;
+    string mod;
     string nameBin;
     int task;
     int index;
     BinWriter bw = BinWriter();
-    ReaderSource rs = ReaderSource();
     bool isExit = false;
     string menu = "1. Запись в бинарный файл из текстового\n"
                   "2. Запись из бинарного файла в текстовый\n"
                   "3. Вывод всех записей двоичного файла\n"
                   "4. Чтение из бинарного файла по индексу\n"
                   "5. Удаление из бинарного файла по индексу\n"
-                  "6. Замена в бинарном файле по индексу\n"
-                  "7. Вывод бинарного файла\n"
-                  "8. Вывод модели по дате\n"
-                  "9. Выход";
-
+                  "6. Заменить даты техосмотра у автомобиля с заданным номером на новую дату\n"
+                  "7. Вывод списока авто одной модели, прошедших техосмотр в заданную дату.\n";
 public:
     void start();
 
