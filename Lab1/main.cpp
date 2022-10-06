@@ -9,8 +9,8 @@ void printBitset(int b) {
 }
 
 void to_ones(int x){
-    int a = 1<<16;
-    int b = 1<<14;
+    int a = 1<<8;
+    int b = 1<<5;
     int c = 1;
     int mask = a | b | c;
     cout << "Mask:   ";
@@ -21,7 +21,10 @@ void to_ones(int x){
 }
 
 void to_zeros(int x){
-    int mask = 7<<1;
+    int a = 1<<8;
+    int b = 1<<5;
+    int c = 1;
+    int mask = a | b | c;
     mask = ~mask;
     cout << "Mask:   ";
     printBitset(mask);
@@ -31,18 +34,18 @@ void to_zeros(int x){
 }
 
 void mult(int x){
-    x = x << 6;
+    x = x << 3;
     cout << "Result: " << x << endl;
 }
 
 void division(int x){
-    x =  x >> 6;
+    x =  x >> 3;
     cout << "Result: " << x << endl;
 }
 
 void to_zero_n(int x,int n){
-    unsigned int mask = 1<<31;
-    mask >>= 31-n;
+    unsigned int mask = 1;
+    mask <<= n-1;
     mask = ~mask;
     cout << "Mask:   ";
     printBitset(mask);
@@ -52,11 +55,11 @@ void to_zero_n(int x,int n){
 }
 
 void ui(){
-    cout << "Input task number: ";
+    cout << "Input task number: \n";
     int num;
     int val;
     cin >> num;
-    cout << "Input value: ";
+    cout << "Input value: \n";
     cin >> val;
     switch (num) {
         case 1:
@@ -83,7 +86,7 @@ void ui(){
             break;
         case 5:
             int n;
-            cout << "Input N: ";
+            cout << "Input N: \n";
             cin >> n;
             cout << "Input:  " ;
             printBitset(val);
