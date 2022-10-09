@@ -172,3 +172,5 @@ int BinWriter::getIndexById(string name, int id) {
     }
     return -1;
 }
+
+

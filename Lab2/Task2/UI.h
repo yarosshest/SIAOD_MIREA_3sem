@@ -21,13 +21,13 @@ private:
     int index;
     BinWriter bw = BinWriter();
     bool isExit = false;
-    string menu = "1. Запись в бинарный файл из текстового\n"
-                  "2. Запись из бинарного файла в текстовый\n"
-                  "3. Вывод всех записей двоичного файла\n"
-                  "4. Чтение из бинарного файла по индексу\n"
-                  "5. Удаление из бинарного файла по индексу\n"
-                  "6. Заменить даты техосмотра у автомобиля с заданным номером на новую дату\n"
-                  "7. Вывод списока авто одной модели, прошедших техосмотр в заданную дату.\n";
+    string menu = "1. Writing to a binary file from a text file\n"
+                  "2. Writing from a binary file to a text file\n"
+                  "3. Output all binary records\n"
+                  "4. Reading from a binary file by index\n"
+                  "5. Deleting from a binary file by index\n"
+                  "6. Change the inspection dates of a vehicle with a given number to a new date\n"
+                  "7. Display a list of vehicles of the same model inspected on a given date\n";
 public:
     void start();
 
