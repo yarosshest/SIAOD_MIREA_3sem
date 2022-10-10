@@ -13,9 +13,9 @@ void TextWriter::createFile(string name) {
     file.open(name, ios::out | ios::trunc);
 
     int x = dist(gen);
-    int y = dist(gen);
     for (unsigned i = 0; i < x; i++) {
-        for (unsigned j = 0; j < y - 1; j++) {
+        int y = dist(gen);
+        for (unsigned j = 0; j < y ; j++) {
             file << dist(gen) << " ";
         }
         file << endl;
@@ -38,14 +38,11 @@ void TextWriter::output(string name) {
 
 bool TextWriter::fileCheck(string name) {
     ifstream fileSrc(name);
-    if (!fileSrc)
-    {
+    if (!fileSrc){
         cout << "File doesn't exist\n";
         fileSrc.close();
         return false;
-    }
-    else
-    {
+    }else{
         fileSrc.close();
         return true;
     }

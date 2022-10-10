@@ -28,15 +28,7 @@ void BinWriter::writeBin(string name, string nameBin){
     }
 }
 
-void BinWriter::readBin(string name, vector<Auto> &autos) {
-    if (fileCheck(name)){
-        ifstream in(name, ios::binary);
-        Auto *tmp = new Auto();
-        while (in.read((char*)tmp, sizeof(Auto)))
-            autos.push_back(*tmp);
-        in.close();
-    }
-}
+
 
 void BinWriter::outputBin(string name) {
     if (fileCheck(name)) {
@@ -87,7 +79,6 @@ void BinWriter::dellAuto(string name, int id) {
             filesystem::resize_file(name, n - sizeof(Auto));
         }
     }
-
 }
 
 void BinWriter::writeAuto(string name, Auto au, int index) {
@@ -150,9 +141,7 @@ bool BinWriter::fileCheck(string name) {
         cout << "File doesn't exist\n";
         fileSrc.close();
         return false;
-    }
-    else
-    {
+    }else{
         fileSrc.close();
         return true;
     }
