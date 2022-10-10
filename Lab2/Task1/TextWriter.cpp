@@ -98,4 +98,40 @@ int TextWriter::getVolume(string name) {
     return 0;
 }
 
+void TextWriter::sort(string name, string outfile) {
+    int uneven = 0;
+    int even = 0;
+    int val;
+    string sEven = "";
+    string sUneven = "";
+
+    if (fileCheck(name)) {
+        ifstream file(name, ios::in);
+        string line;
+        int index = 0;
+        while (getline(file, line)) {
+            char *str = const_cast<char *>(line.c_str());
+            char *tmp_char = strtok(str, " ");
+            while (tmp_char != nullptr && *(tmp_char) != '\r') {
+                val = atoi(tmp_char);
+                if (val % 2 == 0) {
+                    even++;
+                    sEven += tmp_char;
+                    sEven += " ";
+                } else {
+                    uneven++;
+                    sUneven += tmp_char;
+                    sUneven += " ";
+                }
+                tmp_char = strtok(nullptr, " ");
+            }
+        }
+        file.close();
+    }
+    ofstream file;
+    file.open(outfile, ios::out | ios::trunc);
+    file << uneven  <<" "+ sUneven << endl;
+    file << even  <<" "+ sEven << endl;
+}
+
 

@@ -39,6 +39,13 @@ void UI::start() {
                 cin >> name;
                 cout << TextWriter::getVolume(name)<< endl;
                 break;
+            case 6:
+                cout << "Enter the name of the text input file" << endl;
+                cin >> name;
+                cout << "Enter the name of the text output file" << endl;
+                cin >> nameOut;
+                TextWriter::sort(name, nameOut);
+                break;
             default:
                 isExit = true;
                 break;

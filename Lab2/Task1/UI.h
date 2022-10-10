@@ -11,6 +11,7 @@ using namespace std;
 class UI {
 private:
     string name;
+    string nameOut;
     string line;
     int task;
     int index;
@@ -19,7 +20,8 @@ private:
                   "2. Text file output\n"
                   "3. Adding a new line to the end of the file\n"
                   "4. Reading from a file by index\n"
-                  "5. Determine the number of numbers in the file\n";
+                  "5. Determine the number of numbers in the file\n"
+                  "6. Sort the file\n";
 public:
     void start();
 

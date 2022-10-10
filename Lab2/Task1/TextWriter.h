@@ -18,6 +18,7 @@ public:
     static void addLastRow(string name, string row);
     static string readById(string name, int id);
     static int getVolume(string name);
+    static void sort(string name, string outfile);
 };
 
 
