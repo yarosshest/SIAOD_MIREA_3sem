@@ -11,12 +11,7 @@ using namespace std;
 class UI {
 private:
     string name;
-    string date;
-    string buk;
-    string reg;
-    string num;
-    string mod;
-    string nameBin;
+    string line;
     int task;
     int index;
     bool isExit = false;

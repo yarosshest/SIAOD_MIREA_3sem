@@ -1,9 +1,9 @@
 #include "TextWriter.h"
+#include "UI.h"
 using namespace std;
 int main()
 {
-    TextWriter::createFile("src.txt");
-    TextWriter::output("src.txt");
-    cout << TextWriter::readById("src.txt", 5);
+    UI ui = UI();
+    ui.start();
     return 0;
 }
