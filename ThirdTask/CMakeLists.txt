@@ -1,0 +1,1 @@
+add_executable(ThirdTask main.cpp binFile/BinWriter.cpp binFile/Auto.cpp HashMap/HeshTable.cpp Data.cpp)
