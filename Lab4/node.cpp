@@ -8,7 +8,7 @@ int node::balance_factor() {
     int hl = 0, hr = 0;
     if (l != nullptr) hl = l->height;
     if (r != nullptr) hr = r->height;
-    return hl - hr;
+    return hr - hl;
 }
 
 void node::fix_height() {
@@ -38,16 +38,19 @@ node *node::rotate_left() {
 
 node *node::balance() {
     fix_height();
-    if (balance_factor() == 2) {
-        if (l->balance_factor() < 0)
-            l = l->rotate_left();
-        return rotate_right();
-    }
-    if (balance_factor() == -2) {
-        if (r->balance_factor() > 0)
+    if (r != nullptr) r = r->balance();
+    if (l != nullptr) l = l->balance();
+    if (balance_factor() >= 2) {
+        if (r->balance_factor() < 0)
             r = r->rotate_right();
         return rotate_left();
     }
+    if (balance_factor() <= -2) {
+        if (l->balance_factor() > 0)
+            l = l->rotate_left();
+        return rotate_right();
+    }
+
     return this;
 }
 
@@ -58,25 +61,44 @@ node *node::add(char x) {
     }
     if (x < info) {
         if (l == nullptr) {
-            l = new node();
+            l = new node;
+            l->info = x;
+        } else {
+            l = l->add(x);
         }
-        l = l->add(x);
     } else {
         if (r == nullptr) {
-            r = new node();
+            r = new node;
+            r->info = x;
+        } else {
+            r = r->add(x);
         }
-        r = r->add(x);
     }
     return balance();
 }
 
-void node::print(const string &rpref, const string &cpref, const string &lpref) {
-    if (this == nullptr) return;
-    if (r)
-        r->print(rpref + "  ", rpref + "\u250C\u2500", rpref + "\u2502 ");
-    std::cout << cpref << info << std::endl;
-    if (l)
-        l->print(lpref + "\u2502 ", lpref + "\u2514\u2500", lpref + "  ");
+string toString(char &value) {
+    std::ostringstream os;
+    os << value;
+    return os.str();
+}
+
+void node::print(string &resul) {
+    if (l != nullptr) {
+        resul.append(toString(info));
+        resul.append("->");
+        resul.append(toString(l->info));
+        resul.append(";");
+        l->print(resul);
+    }
+    if (r != nullptr) {
+        resul.append(toString(info));
+        resul.append("->");
+        resul.append(toString(r->info));
+        resul.append(";");
+        r->print(resul);
+    }
+
 }
 
 

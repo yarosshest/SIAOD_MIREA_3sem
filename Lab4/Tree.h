@@ -12,7 +12,7 @@ class Tree {
     node *root = nullptr;
 public:
     void add(char x);
-    void print();
+    string print();
     void balance();
 
 };

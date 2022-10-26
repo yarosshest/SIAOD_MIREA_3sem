@@ -13,13 +13,16 @@ void Tree::add(char n) {
     root = root->add(n);
 }
 
-void Tree::print() {
+string Tree::print() {
     balance();
     if (root == nullptr) {
-        cout << "Tree is empty" << endl;
-        return;
+        return "Tree is empty";
     }
-    root->print();
+    string result;
+    result.append("https://quickchart.io/graphviz?graph=digraph{");
+    root->print(result);
+    result.append("}");
+    return result;
 }
 
 void Tree::balance() {
@@ -27,5 +30,6 @@ void Tree::balance() {
         cout << "Tree is empty" << endl;
         return;
     }
+
     root = root->balance();
 }

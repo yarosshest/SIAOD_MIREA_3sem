@@ -7,11 +7,12 @@
 
 #include <iostream>
 #include <clocale>
+#include <sstream>
 using namespace std;
 class node {
 public:
     char info = NULL;
-    int height  = 0;
+    int height  = 1;
     node *l = nullptr;
     node *r = nullptr;
     int balance_factor();
@@ -20,7 +21,7 @@ public:
     node *rotate_left();
     node *balance();
     node *add(char x);
-    void print(string const & rpref = "", string const & cpref = "", string const & lpref = "");
+    void print(string &resul);
 };
 
 
