@@ -8,19 +8,16 @@
 #include <iostream>
 #include <clocale>
 #include <sstream>
+#include <vector>
 using namespace std;
 class node {
 public:
     char info = NULL;
-    int height  = 1;
     node *l = nullptr;
     node *r = nullptr;
-    int balance_factor();
-    void fix_height();
-    node *rotate_right();
-    node *rotate_left();
-    node *balance();
-    node *add(char x);
+    explicit node(vector<char> &keys);
+    int height(char x);
+    int countChild();
     void print(string &resul);
 };
 

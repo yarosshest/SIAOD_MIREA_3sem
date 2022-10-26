@@ -3,18 +3,7 @@
 //
 
 #include "Tree.h"
-
-void Tree::add(char n) {
-    if (root == nullptr) {
-        root = new node;
-        root->info = n;
-        return;
-    }
-    root = root->add(n);
-}
-
 string Tree::print() {
-    balance();
     if (root == nullptr) {
         return "Tree is empty";
     }
@@ -25,11 +14,14 @@ string Tree::print() {
     return result;
 }
 
-void Tree::balance() {
-    if (root == nullptr) {
-        cout << "Tree is empty" << endl;
-        return;
-    }
+Tree::Tree(vector<char> &keys) {
+    root = new node(keys);
+}
 
-    root = root->balance();
+int Tree::height(char x) {
+    return root->height(x);
+}
+
+int Tree::countLeft() {
+    return root->l->countChild() +1;
 }

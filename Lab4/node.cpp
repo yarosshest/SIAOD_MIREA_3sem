@@ -3,80 +3,6 @@
 //
 
 #include "node.h"
-
-int node::balance_factor() {
-    int hl = 0, hr = 0;
-    if (l != nullptr) hl = l->height;
-    if (r != nullptr) hr = r->height;
-    return hr - hl;
-}
-
-void node::fix_height() {
-    int hl = 0, hr = 0;
-    if (l != nullptr) hl = l->height;
-    if (r != nullptr) hr = r->height;
-    height = (hl > hr ? hl : hr) + 1;
-}
-
-node *node::rotate_right() {
-    node *q = l;
-    l = q->r;
-    q->r = this;
-    fix_height();
-    q->fix_height();
-    return q;
-}
-
-node *node::rotate_left() {
-    node *p = r;
-    r = p->l;
-    p->l = this;
-    fix_height();
-    p->fix_height();
-    return p;
-}
-
-node *node::balance() {
-    fix_height();
-    if (r != nullptr) r = r->balance();
-    if (l != nullptr) l = l->balance();
-    if (balance_factor() >= 2) {
-        if (r->balance_factor() < 0)
-            r = r->rotate_right();
-        return rotate_left();
-    }
-    if (balance_factor() <= -2) {
-        if (l->balance_factor() > 0)
-            l = l->rotate_left();
-        return rotate_right();
-    }
-
-    return this;
-}
-
-node *node::add(char x) {
-    if (info == NULL) {
-        info = x;
-        return this;
-    }
-    if (x < info) {
-        if (l == nullptr) {
-            l = new node;
-            l->info = x;
-        } else {
-            l = l->add(x);
-        }
-    } else {
-        if (r == nullptr) {
-            r = new node;
-            r->info = x;
-        } else {
-            r = r->add(x);
-        }
-    }
-    return balance();
-}
-
 string toString(char &value) {
     std::ostringstream os;
     os << value;
@@ -99,6 +25,62 @@ void node::print(string &resul) {
         r->print(resul);
     }
 
+}
+
+node::node(vector<char> &keys) {
+    if (keys.size() == 1) {
+        info = keys[0];
+    }
+    else if (keys.size() == 2) {
+        info = keys[1];
+        vector<char>::const_iterator nlB = keys.begin();
+        vector<char>::const_iterator nlE = keys.end()-1;
+        vector<char> nl(nlB, nlE);
+        vector<char> cop;
+        copy(nl.begin(), nl.end(), back_inserter(cop));
+        l = new node(cop);
+    }
+    else {
+        int n = (keys.size() /2) ;
+        vector<char>::const_iterator nlB = keys.begin();
+        vector<char>::const_iterator nlE = keys.begin()+n;
+        vector<char> left(nlB, nlE);
+        vector<char>::const_iterator nrB = keys.begin()+n+1;
+        vector<char>::const_iterator nrE = keys.end();
+        vector<char> right(nrB, nrE);
+        info = keys[n];
+
+        vector<char> leftC;
+        vector<char> rightC;
+
+        copy(left.begin(), left.end(), back_inserter(leftC));
+        copy(right.begin(), right.end(), back_inserter(rightC));
+        l = new node(leftC);
+        r = new node(rightC);
+    }
+}
+
+int node::height(char x) {
+    if (info == x) {
+        return 0;
+    }
+    else if (x < info) {
+        return 1 + l->height(x);
+    }
+    else {
+        return 1 + r->height(x);
+    }
+}
+
+int node::countChild() {
+    int count = 0;
+    if (l != nullptr) {
+        count = count + 1 + l->countChild();
+    }
+    if (r != nullptr) {
+        count = count + 1 + r->countChild();
+    }
+    return count;
 }
 
 
