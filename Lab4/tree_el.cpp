@@ -49,8 +49,8 @@ int tree_el::bf()
     int heightL = 0;
     int heightR = 0;
 
-    if ((m_left != NULL)&&(!left_tag)) heightL = m_left->height;
-    if ((m_right != NULL)&&(!right_tag)) heightR = m_right->height;
+    if ((m_left != nullptr)&&(!left_tag)) heightL = m_left->height;
+    if ((m_right != nullptr)&&(!right_tag)) heightR = m_right->height;
 
     return heightR-heightL;
 }

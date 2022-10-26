@@ -5,7 +5,9 @@
 #ifndef SIAOD_UI_H
 #define SIAOD_UI_H
 #include <string>
+#include <vector>
 #include <iostream>
+#include <algorithm>
 #include "binary_tree.h"
 using namespace std;
 class UI {
@@ -16,12 +18,6 @@ private:
     int task;
     int index;
     bool isExit = false;
-    string menu = "1. Creating a text file\n"
-                  "2. Text file output\n"
-                  "3. Adding a new line to the end of the file\n"
-                  "4. Reading from a file by index\n"
-                  "5. Determine the number of numbers in the file\n"
-                  "6. Sort the file\n";
 public:
     void start();
 

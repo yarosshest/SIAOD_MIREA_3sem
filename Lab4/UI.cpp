@@ -1,12 +1,17 @@
 #include "UI.h"
 void UI::start() {
     int n;
-    cout << "input n: ";
+    cout << "input n:  ";
     cin >> n;
     binary_tree tree;
-    for (int i = 0; i , n - 1; i++) {
+    vector<char> keys;
+    while (n >= 0) {
         char key = 97 + rand() % 26;
-        tree.insert(key);
+        if (find(keys.begin(), keys.end(), key) == keys.end()) {
+            tree.insert(key);
+            n = n-1;
+        }
     }
-    cout << "Tree: " << tree.printLNR() << endl;
+//    tree.Balance();
+    cout << tree.GraphViz() << endl;
 }

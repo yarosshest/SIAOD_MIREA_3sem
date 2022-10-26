@@ -5,7 +5,7 @@
 #ifndef TREE_BINARY_TREE_H
 #define TREE_BINARY_TREE_H
 
-#include "tree_el.cpp"
+#include "tree_el.h"
 #include <iostream>
 #include <algorithm>
 #include <vector>
