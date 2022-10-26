@@ -1,0 +1,1 @@
+add_executable(Lab4 main.cpp binary_tree.cpp tree_el.cpp UI.cpp)
