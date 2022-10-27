@@ -10,14 +10,15 @@ using namespace std;
 
 class Tree {
     node *root = nullptr;
+    vector<char> keys;
 public:
-    explicit Tree(vector<char> &keys);
+    Tree();
+    explicit Tree(vector<char> k);
     string print();
     int height(char x);
     int countLeft();
     void printLeft();
     void printHigh();
-
 };
 
 

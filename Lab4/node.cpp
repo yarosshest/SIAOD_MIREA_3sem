@@ -62,7 +62,7 @@ node::node(vector<char> &keys) {
 
 int node::height(char x) {
     if (info == x) {
-        return 0;
+        return 1;
     }
     else if (x < info) {
         return 1 + l->height(x);
