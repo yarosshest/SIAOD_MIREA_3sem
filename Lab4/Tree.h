@@ -15,6 +15,8 @@ public:
     string print();
     int height(char x);
     int countLeft();
+    void printLeft();
+    void printHigh();
 
 };
 

@@ -25,3 +25,11 @@ int Tree::height(char x) {
 int Tree::countLeft() {
     return root->l->countChild() +1;
 }
+
+void Tree::printLeft() {
+    root->printLeft();
+}
+
+void Tree::printHigh() {
+    root->printhight();
+}

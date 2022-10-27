@@ -14,10 +14,7 @@ void UI::start() {
     sort(keys.begin(), keys.end());
     Tree tree = Tree(keys);
     cout << tree.print();
-
-    cout << "input char:  " << endl;
-    char x;
-    cin >> x;
-    cout << "height: " << tree.height(x) << endl;
-    cout << "count left: " << tree.countLeft() << endl;
+    cout << "print left: " << endl;
+    tree.printLeft();
+    tree.printHigh();
 }
