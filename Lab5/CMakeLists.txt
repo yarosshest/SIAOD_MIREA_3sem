@@ -1,0 +1,1 @@
+add_executable(Lab5 main.cpp TreeAVL/TreeAVL.cpp UI.cpp TreeAVL/nodeAVL.cpp Tree/Tree.cpp Tree/node.cpp Data.cpp File/BinWriter.cpp)

@@ -3,7 +3,7 @@
 //
 
 #include "BinWriter.h"
-void BinWriter::writeBin(string name, string nameBin){
+void BinWriter::writeBin(string name){
     if (fileCheck(name))
     {
         ifstream file (name, ios::in);
@@ -30,9 +30,9 @@ void BinWriter::writeBin(string name, string nameBin){
 
 
 
-void BinWriter::outputBin(string name) {
-    if (fileCheck(name)) {
-        ifstream in(name, ios::binary);
+void BinWriter::outputBin() const {
+    if (fileCheck(nameBin)) {
+        ifstream in(nameBin, ios::binary);
         Auto *tmp = new Auto();
         while (in.read((char *) tmp, sizeof(Auto)))
             cout << tmp->out() << endl;
@@ -40,12 +40,12 @@ void BinWriter::outputBin(string name) {
     }
 }
 
-Auto* BinWriter::readAuto(string name, int index) {
+Auto* BinWriter::readAuto( int index) {
 
-    if (fileCheck(name)) {
-        uintmax_t n = filesystem::file_size(name);
+    if (fileCheck(nameBin)) {
+        uintmax_t n = filesystem::file_size(nameBin);
         if((index+1) * sizeof(Auto) < n) {
-            ifstream in(name, ios::binary);
+            ifstream in(nameBin, ios::binary);
             in.seekg(index * sizeof(Auto));
             Auto *tmp = new Auto();
             in.read((char *) tmp, sizeof(Auto));
@@ -62,60 +62,60 @@ Auto* BinWriter::readAuto(string name, int index) {
 
 
 
-void BinWriter::dellAuto(string name, int id) {
-    int ind = getIndexById(name, id);
+void BinWriter::dellAuto(int id) {
+    int ind = getIndexById(id);
     if (ind < 0){
         cout << "No such id" << endl;
         return;
     }else{
-        if (fileCheck(name)) {
-            fstream out(name, ios::binary | ios::out | ios::in);
-            uintmax_t n = filesystem::file_size(name);
+        if (fileCheck(nameBin)) {
+            fstream out(nameBin, ios::binary | ios::out | ios::in);
+            uintmax_t n = filesystem::file_size(nameBin);
             Auto *tmp = new Auto();
             out.seekg(n - sizeof(Auto), ios::beg);
             out.read((char *) tmp, sizeof(Auto));
             out.close();
-            writeAuto(name, *tmp, ind);
-            filesystem::resize_file(name, n - sizeof(Auto));
+            writeAuto( *tmp, ind);
+            filesystem::resize_file(nameBin, n - sizeof(Auto));
         }
     }
 }
 
-void BinWriter::writeAuto(string name, Auto au, int index) {
-    if (fileCheck(name)) {
-        fstream out(name, ios::binary | ios::in | ios::out);
+void BinWriter::writeAuto(Auto au, int index) {
+    if (fileCheck(nameBin)) {
+        fstream out(nameBin, ios::binary | ios::in | ios::out);
         out.seekp(index * sizeof(Auto), ios::beg);
         out.write((char *) &au, sizeof(Auto));
         out.close();
     }
 }
 
-void BinWriter::rep(string date,string reg ,string num, string buk, string name)
+void BinWriter::rep(string date,string reg ,string num, string buk)
 {
-    if (fileCheck(name)) {
+    if (fileCheck(nameBin)) {
         vector<Auto> result = vector<Auto>();
-        readBin(name, result);
+        readBin(result);
         int index = 0;
         for (Auto i: result) {
             if (i.region == reg && i.num == num && i.characters == buk) {
                 i.date = date;
-                writeAuto(name, i, index);
+                writeAuto(i, index);
             }
             index++;
         }
     }
 }
 
-void BinWriter::showMod(string date,string mod ,string name)
+void BinWriter::showMod(string date,string mod)
 {
     vector<Auto> result = vector<Auto>();
-    readBin(name, result);
+    readBin(result);
     for(Auto i : result)
         if(i.date == date && i.model == mod )
             cout << i.toString() << endl;
 }
 
-void BinWriter::writeSource(string nameBin, string src) {
+void BinWriter::writeSource(string src) {
     if (fileCheck(nameBin)) {
         ifstream file(nameBin, ios::binary);
         ofstream fileSrc(src, ios::out | ios::trunc);
@@ -134,7 +134,7 @@ void BinWriter::writeSource(string nameBin, string src) {
     }
 }
 
-bool BinWriter::fileCheck(string name) {
+bool BinWriter::fileCheck(string name) const {
     ifstream fileSrc(name);
     if (!fileSrc)
     {
@@ -147,9 +147,9 @@ bool BinWriter::fileCheck(string name) {
     }
 }
 
-int BinWriter::getIndexById(string name, int id) {
-    if (fileCheck(name)) {
-        ifstream in(name, ios::binary);
+int BinWriter::getIndexById(int id) {
+    if (fileCheck(nameBin)) {
+        ifstream in(nameBin, ios::binary);
         Auto *tmp = new Auto();
         int index = 0;
         while (in.read((char *) tmp, sizeof(Auto))) {
@@ -162,14 +162,31 @@ int BinWriter::getIndexById(string name, int id) {
     return -1;
 }
 
-void BinWriter::readBin(string name, vector<Auto> &autos) {
-    if (fileCheck(name)) {
-        ifstream in(name, ios::binary);
+void BinWriter::readBin(vector<Auto> &autos) {
+    if (fileCheck(nameBin)) {
+        ifstream in(nameBin, ios::binary);
         Auto *tmp = new Auto();
         while (in.read((char *) tmp, sizeof(Auto)))
             autos.push_back(*tmp);
         in.close();
     }
+}
+
+int BinWriter::GetSize() const {
+    if (fileCheck(nameBin)) {
+        ifstream in(nameBin, ios::binary);
+        in.seekg(0, ios::end);
+        int size = in.tellg();
+        in.close();
+        return size / sizeof(Auto);
+    }
+    return 0;
+}
+
+BinWriter::BinWriter(string name, string str) {
+    nameBin = name;
+
+    writeBin(str);
 }
 
 

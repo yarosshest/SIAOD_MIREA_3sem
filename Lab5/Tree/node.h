@@ -2,21 +2,22 @@
 // Created by yaros on 26.10.2022.
 //
 
-#ifndef SIAOD_NODEAVL_H
+#ifndef SIAOD_NODE_H
 #define SIAOD_NODE_H
 
 #include <iostream>
+#include "../Data.h"
 #include <clocale>
 #include <sstream>
 #include <vector>
 using namespace std;
-class nodeAVL {
+class node {
 public:
-    char info = NULL;
-    nodeAVL *l = nullptr;
-    nodeAVL *r = nullptr;
-    explicit nodeAVL(vector<char> &keys);
-    int height(char x);
+    Data info;
+    node *l = nullptr;
+    node *r = nullptr;
+    explicit node(vector<Data> &keys);
+    int height(Data x);
     int countChild();
     void print(string &resul);
     void printLeft(string const & rpref = "", string const & cpref = "", string const & lpref = "");

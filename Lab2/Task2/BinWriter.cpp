@@ -134,7 +134,7 @@ void BinWriter::writeSource(string nameBin, string src) {
     }
 }
 
-bool BinWriter::fileCheck(string name) {
+bool BinWriter::fileCheck(string name) const {
     ifstream fileSrc(name);
     if (!fileSrc)
     {

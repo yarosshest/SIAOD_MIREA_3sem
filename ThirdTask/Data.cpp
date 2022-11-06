@@ -5,34 +5,32 @@ using namespace std;
 
 void Data::SaveEntry(int shift)
 {
-	Auto ph = file.Read(shift);
-	table.Insert(ph.GetId(), shift);
+	Auto ph = *file.readAuto(shift);
+	table.Insert(ph.id.c_str(), shift);
 }
 
 void Data::Remove(const char *id)
 {
-	file.Remove(id);
+	file.dellAuto((int) id);
 	table.Remove(id);
 }
 
-Phone Data::Search(const char *id)
+Auto Data::Search(const char *id)
 {
 	int shift = table.GetShift(id);
-	return file.Read(shift);
+	return *file.readAuto(shift);
 }
 
 void Data::Output() const
 {
 	cout << "=====" << endl;
 	cout << "+@+@+File: " << endl;
-	file.Output();
+	file.outputBin();
 	cout << "+@+@+Table: " << endl;
 	table.Output();
 	cout << "=====" << endl;
 }
 
-Data::Data(std::string bin, std::string txt) {
+Data::Data(string bin, string txt) : table() {
     file = BinWriter(bin, txt);
-    table = HeshTable();
-
 }

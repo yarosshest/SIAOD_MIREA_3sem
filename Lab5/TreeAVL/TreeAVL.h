@@ -3,22 +3,18 @@
 //
 
 #ifndef SIAOD_TREEAVL_H
-#define SIAOD_TREE_H
+#define SIAOD_TREEAVL_H
 #include <iostream>
-#include "node.h"
+#include "nodeAVL.h"
 using namespace std;
 
 class TreeAVL {
     nodeAVL *root = nullptr;
-    vector<char> keys;
 public:
-    TreeAVL();
-    explicit TreeAVL(vector<char> k);
+    void add(char x);
     string print();
-    int height(char x);
-    int countLeft();
-    void printLeft();
-    void printHigh();
+    void balance();
+
 };
 
 

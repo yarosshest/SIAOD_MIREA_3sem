@@ -3,7 +3,7 @@
 //
 
 #include "Tree.h"
-string TreeAVL::print() {
+string Tree::print() {
     if (root == nullptr) {
         return "Tree is empty";
     }
@@ -14,12 +14,12 @@ string TreeAVL::print() {
     return result;
 }
 
-TreeAVL::TreeAVL(vector<char> k) {
+Tree::Tree(vector<char> k) {
     keys = k;
-    root = new nodeAVL(keys);
+    root = new node(keys);
 }
 
-int TreeAVL::height(char x) {
+int Tree::height(char x) {
     if (root == nullptr) {
         cout << "Tree is empty" << endl;
         return -1;
@@ -32,7 +32,7 @@ int TreeAVL::height(char x) {
     }
 }
 
-int TreeAVL::countLeft() {
+int Tree::countLeft() {
     if (root == nullptr) {
         cout << "Tree is empty" << endl;
         return -1;
@@ -40,7 +40,7 @@ int TreeAVL::countLeft() {
     return root->l->countChild() +1;
 }
 
-void TreeAVL::printLeft() {
+void Tree::printLeft() {
     if (root == nullptr) {
         cout << "Tree is empty" << endl;
         return;
@@ -48,7 +48,7 @@ void TreeAVL::printLeft() {
     root->printLeft();
 }
 
-void TreeAVL::printHigh() {
+void Tree::printHigh() {
     if (root == nullptr) {
         cout << "Tree is empty" << endl;
         return;
@@ -56,6 +56,6 @@ void TreeAVL::printHigh() {
     root->printhight();
 }
 
-TreeAVL::TreeAVL() {
+Tree::Tree() {
     root = nullptr;
 }

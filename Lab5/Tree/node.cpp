@@ -9,58 +9,58 @@ string toString(char &value) {
     return os.str();
 }
 
-void nodeAVL::print(string &resul) {
+void node::print(string &resul) {
     if (l != nullptr) {
-        resul.append(toString(info));
+        resul.append(info.num);
         resul.append("->");
-        resul.append(toString(l->info));
+        resul.append(l->info.num);
         resul.append(";");
         l->print(resul);
     }
     if (r != nullptr) {
-        resul.append(toString(info));
+        resul.append(info.num);
         resul.append("->");
-        resul.append(toString(r->info));
+        resul.append(r->info.num);
         resul.append(";");
         r->print(resul);
     }
 
 }
 
-nodeAVL::nodeAVL(vector<char> &keys) {
+node::node(vector<Data> &keys) {
     if (keys.size() == 1) {
         info = keys[0];
     }
     else if (keys.size() == 2) {
         info = keys[1];
-        vector<char>::const_iterator nlB = keys.begin();
-        vector<char>::const_iterator nlE = keys.end()-1;
-        vector<char> nl(nlB, nlE);
-        vector<char> cop;
+        auto nlB = keys.begin();
+        auto nlE = keys.end()-1;
+        vector<Data> nl(nlB, nlE);
+        vector<Data> cop;
         copy(nl.begin(), nl.end(), back_inserter(cop));
-        l = new nodeAVL(cop);
+        l = new node(cop);
     }
     else {
         int n = (keys.size() /2) ;
-        vector<char>::const_iterator nlB = keys.begin();
-        vector<char>::const_iterator nlE = keys.begin()+n;
-        vector<char> left(nlB, nlE);
-        vector<char>::const_iterator nrB = keys.begin()+n+1;
-        vector<char>::const_iterator nrE = keys.end();
-        vector<char> right(nrB, nrE);
+        auto nlB = keys.begin();
+        auto nlE = keys.begin()+n;
+        vector<Data> left(nlB, nlE);
+        auto nrB = keys.begin()+n+1;
+        auto nrE = keys.end();
+        vector<Data> right(nrB, nrE);
         info = keys[n];
 
-        vector<char> leftC;
-        vector<char> rightC;
+        vector<Data> leftC;
+        vector<Data> rightC;
 
         copy(left.begin(), left.end(), back_inserter(leftC));
         copy(right.begin(), right.end(), back_inserter(rightC));
-        l = new nodeAVL(leftC);
-        r = new nodeAVL(rightC);
+        l = new node(leftC);
+        r = new node(rightC);
     }
 }
 
-int nodeAVL::height(char x) {
+int node::height(Data x) {
     if (info == x) {
         return 1;
     }
@@ -72,7 +72,7 @@ int nodeAVL::height(char x) {
     }
 }
 
-int nodeAVL::countChild() {
+int node::countChild() {
     int count = 0;
     if (l != nullptr) {
         count = count + 1 + l->countChild();
@@ -83,7 +83,7 @@ int nodeAVL::countChild() {
     return count;
 }
 
-void nodeAVL::printLeft(string const & rpref, string const & cpref, string const & lpref ) {
+void node::printLeft(string const & rpref, string const & cpref, string const & lpref ) {
     if (r)
         r->printLeft(rpref + "  ", rpref + "\u250C\u2500", rpref + "\u2502 ");
     cout << cpref << info << endl;
@@ -91,11 +91,11 @@ void nodeAVL::printLeft(string const & rpref, string const & cpref, string const
         l->printLeft( lpref + "\u2502 ", lpref + "\u2514\u2500", lpref + "  ");
 }
 
-void nodeAVL::printhight(const string &prefix, bool root, bool last) {
+void node::printhight(const string &prefix, bool root, bool last) {
     cout << prefix << (root ? "" : (last ? "\u2514\u2500" : "\u251C\u2500")) << info << endl;
     if (!l && !r)
         return;
-    vector<nodeAVL*> v;
+    vector<node*> v;
     if (l)
         v.push_back(l);
     if (r)

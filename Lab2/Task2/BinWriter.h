@@ -24,7 +24,7 @@ public:
     void dellAuto(string name, int index);
     void rep(string date,string reg ,string num, string buk, string name);
     void showMod(string date,string mod ,string name);
-    bool fileCheck(string name);
+    bool fileCheck(string name) const;
     int getIndexById(string name, int id);
 };
 
