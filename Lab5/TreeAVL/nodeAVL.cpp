@@ -4,7 +4,7 @@
 
 #include "nodeAVL.h"
 
-int nodeAVL::balance_factor() {
+int nodeAVL::balance_factor() const {
     int hl = 0, hr = 0;
     if (l != nullptr) hl = l->height;
     if (r != nullptr) hr = r->height;
@@ -24,6 +24,7 @@ nodeAVL *nodeAVL::rotate_right() {
     q->r = this;
     fix_height();
     q->fix_height();
+    col_rotations++;
     return q;
 }
 
@@ -33,6 +34,7 @@ nodeAVL *nodeAVL::rotate_left() {
     p->l = this;
     fix_height();
     p->fix_height();
+    col_rotations++;
     return p;
 }
 
@@ -54,8 +56,8 @@ nodeAVL *nodeAVL::balance() {
     return this;
 }
 
-nodeAVL *nodeAVL::add(char x) {
-    if (info == NULL) {
+nodeAVL *nodeAVL::add(Data x) {
+    if (info == Data()) {
         info = x;
         return this;
     }
@@ -77,29 +79,71 @@ nodeAVL *nodeAVL::add(char x) {
     return balance();
 }
 
-string toString(char &value) {
-    std::ostringstream os;
-    os << value;
-    return os.str();
+string nodeAVL::toString() {
+    return info.num;
 }
 
-void nodeAVL::print(string &resul) {
+void nodeAVL::print(string &resul) const {
     if (l != nullptr) {
-        resul.append(toString(info));
+        resul.append(info.toString());
         resul.append("->");
-        resul.append(toString(l->info));
+        resul.append(l->info.toString());
         resul.append(";");
         l->print(resul);
     }
     if (r != nullptr) {
-        resul.append(toString(info));
+        resul.append(info.toString());
         resul.append("->");
-        resul.append(toString(r->info));
+        resul.append(r->info.toString());
         resul.append(";");
         r->print(resul);
     }
 
 }
 
+int nodeAVL::getCol_rotations() const {
+    return col_rotations + (l != nullptr ? l->getCol_rotations() : 0) + (r != nullptr ? r->getCol_rotations() : 0);
+}
 
+nodeAVL *nodeAVL::find(string x) {
+    if (info.num == x) return this;
+    if (x < info.num) {
+        if (l == nullptr) return nullptr;
+        return l->find(x);
+    } else {
+        if (r == nullptr) return nullptr;
+        return r->find(x);
+    }
+}
 
+nodeAVL *nodeAVL::dell(string x) {
+    if (info.num == x) {
+        if (l == nullptr && r == nullptr) {
+            delete this;
+            return nullptr;
+        }
+        if (l == nullptr) {
+            nodeAVL *p = r;
+            delete this;
+            return p;
+        }
+        if (r == nullptr) {
+            nodeAVL *p = l;
+            delete this;
+            return p;
+        }
+        nodeAVL *p = r;
+        while (p->l != nullptr) p = p->l;
+        info = p->info;
+        r = r->dell(p->info.num);
+    } else {
+        if (x < info.num) {
+            if (l == nullptr) return this;
+            l = l->dell(x);
+        } else {
+            if (r == nullptr) return this;
+            r = r->dell(x);
+        }
+    }
+    return balance();
+}

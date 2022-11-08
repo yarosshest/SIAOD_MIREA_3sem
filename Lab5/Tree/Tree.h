@@ -2,24 +2,30 @@
 // Created by yaros on 26.10.2022.
 //
 
-#ifndef SIAOD_TREEAVL_H
+#ifndef SIAOD_TREE_H
 #define SIAOD_TREE_H
 #include <iostream>
+#include <vector>
+#include <fstream>
+#include "algorithm"
 #include "node.h"
 using namespace std;
 
-class TreeAVL {
-    nodeAVL *root = nullptr;
-    vector<char> keys;
+class Tree {
+    node *root = nullptr;
+    vector<Data> keys;
 public:
-    TreeAVL();
-    explicit TreeAVL(vector<char> k);
+    Tree();
+    explicit Tree(vector<Data> k);
+    explicit Tree(string path);
     string print();
-    int height(char x);
+    int height(Data x);
     int countLeft();
     void printLeft();
     void printHigh();
+    static bool fileCheck(const string& name) ;
+    static vector<Data> reedFile(string path);
 };
 
 
-#endif //SIAOD_TREEAVL_H
+#endif //SIAOD_TREE_H

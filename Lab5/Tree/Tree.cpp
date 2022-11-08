@@ -3,6 +3,8 @@
 //
 
 #include "Tree.h"
+
+#include <utility>
 string Tree::print() {
     if (root == nullptr) {
         return "Tree is empty";
@@ -14,12 +16,12 @@ string Tree::print() {
     return result;
 }
 
-Tree::Tree(vector<char> k) {
-    keys = k;
+Tree::Tree(vector<Data> k) {
+    keys = std::move(k);
     root = new node(keys);
 }
 
-int Tree::height(char x) {
+int Tree::height(Data x) {
     if (root == nullptr) {
         cout << "Tree is empty" << endl;
         return -1;
@@ -58,4 +60,46 @@ void Tree::printHigh() {
 
 Tree::Tree() {
     root = nullptr;
+}
+
+vector<Data> Tree::reedFile(string path) {
+    vector<Data> res;
+    if (fileCheck(path))
+    {
+        ifstream file (path, ios::in);
+        string line;
+        while (getline(file, line)) {
+            vector<char *> data = vector<char *>();
+            char *str = const_cast<char *>(line.c_str());
+
+            char *tmp_char = strtok(str, ";");
+
+            while (tmp_char != NULL && *(tmp_char) != '\r') {
+                data.push_back(tmp_char);
+                tmp_char = strtok(NULL, ";");
+            }
+            res.emplace_back(data);
+        }
+        file.close();
+        sort(res.begin(), res.end());
+    }
+    return res;
+}
+
+bool Tree::fileCheck(const string& name) {
+    ifstream fileSrc(name);
+    if (!fileSrc)
+    {
+        cout << "File doesn't exist\n";
+        fileSrc.close();
+        return false;
+    }else{
+        fileSrc.close();
+        return true;
+    }
+}
+
+Tree::Tree(string pat) {
+    keys = reedFile(std::move(pat));
+    root = new node(keys);
 }

@@ -8,20 +8,27 @@
 #include <iostream>
 #include <clocale>
 #include <sstream>
+#include "../Data.h"
+
 using namespace std;
 class nodeAVL {
 public:
-    char info = NULL;
+    Data info = Data();
     int height  = 1;
+    int col_rotations = 0;
     nodeAVL *l = nullptr;
     nodeAVL *r = nullptr;
-    int balance_factor();
+    [[nodiscard]] int balance_factor() const;
     void fix_height();
     nodeAVL *rotate_right();
     nodeAVL *rotate_left();
     nodeAVL *balance();
-    nodeAVL *add(char x);
-    void print(string &resul);
+    nodeAVL *add(Data x);
+    string toString();
+    void print(string &resul) const;
+    [[nodiscard]] int getCol_rotations() const;
+    nodeAVL *find(string x);
+    nodeAVL *dell(string x);
 };
 
 

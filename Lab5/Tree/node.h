@@ -10,10 +10,11 @@
 #include <clocale>
 #include <sstream>
 #include <vector>
+#include <string>
 using namespace std;
 class node {
 public:
-    Data info;
+    Data info = Data();
     node *l = nullptr;
     node *r = nullptr;
     explicit node(vector<Data> &keys);
@@ -25,4 +26,4 @@ public:
 };
 
 
-#endif //SIAOD_NODEAVL_H
+#endif //SIAOD_NODE_H

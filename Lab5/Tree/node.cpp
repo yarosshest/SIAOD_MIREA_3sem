@@ -86,13 +86,13 @@ int node::countChild() {
 void node::printLeft(string const & rpref, string const & cpref, string const & lpref ) {
     if (r)
         r->printLeft(rpref + "  ", rpref + "\u250C\u2500", rpref + "\u2502 ");
-    cout << cpref << info << endl;
+    cout << cpref << info.toString() << endl;
     if (l)
         l->printLeft( lpref + "\u2502 ", lpref + "\u2514\u2500", lpref + "  ");
 }
 
 void node::printhight(const string &prefix, bool root, bool last) {
-    cout << prefix << (root ? "" : (last ? "\u2514\u2500" : "\u251C\u2500")) << info << endl;
+    cout << prefix << (root ? "" : (last ? "\u2514\u2500" : "\u251C\u2500")) << info.toString() << endl;
     if (!l && !r)
         return;
     vector<node*> v;

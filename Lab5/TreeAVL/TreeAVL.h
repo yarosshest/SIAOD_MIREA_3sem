@@ -5,16 +5,23 @@
 #ifndef SIAOD_TREEAVL_H
 #define SIAOD_TREEAVL_H
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
 #include "nodeAVL.h"
+#include "../Data.h"
 using namespace std;
 
 class TreeAVL {
     nodeAVL *root = nullptr;
 public:
-    void add(char x);
+    explicit TreeAVL(string file);
+    void add(Data x);
     string print();
     void balance();
-
+    static vector<Data> reedFile(string path);
+    static bool fileCheck(const string& name) ;
+    int getCol_rotations() const;
 };
 
 

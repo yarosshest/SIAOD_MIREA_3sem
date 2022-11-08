@@ -1,8 +1,10 @@
 
-#include "Ui.h"
-
+#include "File/BinWriter.h"
+#include "Tree/Tree.h"
+#include "Data.h"
+#include "TreeAVL/TreeAVL.h"
+#include <vector>
 int main() {
-    UI ui = UI();
-    ui.start();
-    return 0;
+    TreeAVL t =TreeAVL(R"(C:\Users\yaros\CLionProjects\SIAOD_MIREA_3sem\Lab5\test_10.txt)");
+    t.print();
 }
