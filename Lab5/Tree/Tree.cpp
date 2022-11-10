@@ -3,8 +3,6 @@
 //
 
 #include "Tree.h"
-
-#include <utility>
 string Tree::print() {
     if (root == nullptr) {
         return "Tree is empty";
@@ -91,7 +89,6 @@ bool Tree::fileCheck(const string& name) {
     if (!fileSrc)
     {
         cout << "File doesn't exist\n";
-        fileSrc.close();
         return false;
     }else{
         fileSrc.close();
@@ -102,4 +99,19 @@ bool Tree::fileCheck(const string& name) {
 Tree::Tree(string pat) {
     keys = reedFile(std::move(pat));
     root = new node(keys);
+}
+
+void Tree::dell(string key) {
+    Data x = Data();
+    x.num = key;
+    if (root == nullptr) {
+        cout << "Tree is empty" << endl;
+        return;
+    }
+    if (find(keys.begin(), keys.end(), x) != keys.end()) {
+        keys.erase(find(keys.begin(), keys.end(), x));
+        root = new node(keys);
+    } else{
+        cout << "Element not found" << endl;
+    }
 }
