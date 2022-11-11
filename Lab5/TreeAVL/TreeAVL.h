@@ -15,14 +15,18 @@ using namespace std;
 
 class TreeAVL {
     nodeAVL *root = nullptr;
+    double col_keys = 0;
 public:
     explicit TreeAVL(string file);
     void add(Data x);
-    string print();
+    void dell(string x);
+    void print();
     void balance();
     static vector<Data> reedFile(string path);
     static bool fileCheck(const string& name) ;
-    int getCol_rotations() const;
+    [[nodiscard]] int getCol_rotations() const;
+    double median_rotations();
+    Data find(string x);
 };
 
 

@@ -115,3 +115,16 @@ void Tree::dell(string key) {
         cout << "Element not found" << endl;
     }
 }
+
+Data Tree::findByKey(string key) {
+    return root->findByKey(key);
+}
+
+void Tree::add(Data x) {
+    if (find(keys.begin(), keys.end(), x) != keys.end()) {
+        cout << "Element already exists" << endl;
+        return;
+    }
+    keys.push_back(x);
+    root = new node(keys);
+}

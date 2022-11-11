@@ -25,7 +25,7 @@ public:
     nodeAVL *balance();
     nodeAVL *add(Data x);
     string toString();
-    void print(string &resul) const;
+    void print(string const & rpref, string const & cpref, string const & lpref );
     [[nodiscard]] int getCol_rotations() const;
     nodeAVL *find(string x);
     nodeAVL *dell(string x);

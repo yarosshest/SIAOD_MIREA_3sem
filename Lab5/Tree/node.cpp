@@ -104,5 +104,17 @@ void node::printhight(const string &prefix, bool root, bool last) {
         v[i]->printhight( prefix + (root ? "" : (last ? "  " : "\u2502 ")), false, i + 1 >= v.size());
 }
 
+Data node::findByKey(string key) {
+    if (info.num == key) {
+        return info;
+    }
+    else if (key < info.num) {
+        return l->findByKey(key);
+    }
+    else {
+        return r->findByKey(key);
+    }
+}
+
 
 

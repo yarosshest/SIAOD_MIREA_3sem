@@ -13,11 +13,11 @@ Data::Data(string num, string name, string address) {
 }
 
 bool Data::operator==(const Data &a) const {
-    return num == a.num && name == a.name && address == a.address;
+    return num == a.num;
 }
 
 bool Data::operator!=(const Data &a) const {
-    return num != a.num || name != a.name || address != a.address;
+    return num != a.num;
 }
 
 bool Data::operator>(const Data &a) const {
@@ -49,4 +49,16 @@ Data::Data() {
 
 string Data::toString() const {
     return num;
+}
+
+Data::Data(bool ui) {
+    if (ui){
+        cout << "Enter num: ";
+        cin >> num;
+        cout << "Enter name: ";
+        cin >> name;
+        cout << "Enter address: ";
+        cin >> address;
+    }
+
 }

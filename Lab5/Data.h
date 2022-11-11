@@ -8,6 +8,7 @@
 #include <vector>
 #include <sstream>
 #include <utility>
+#include <iostream>
 using namespace std;
 class Data {
 public:
@@ -15,6 +16,7 @@ public:
     string name;
     string address;
     Data();
+    explicit Data(bool ui);
     Data(string num, string name, string address);
     explicit Data(vector<char*> data);
     bool operator==(const Data& a) const;

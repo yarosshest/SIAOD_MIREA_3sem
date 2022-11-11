@@ -29,6 +29,7 @@ public:
     void showMod(string date,string mod ,string name);
     bool fileCheck(string name) const;
     int getIndexById(string name, int id);
+    Data findByKey(string name, string num);
 };
 
 

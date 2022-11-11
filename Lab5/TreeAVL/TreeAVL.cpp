@@ -13,16 +13,21 @@ void TreeAVL::add(Data n) {
     root = root->add(n);
 }
 
-string TreeAVL::print() {
-    balance();
+Data TreeAVL::find(string x) {
     if (root == nullptr) {
-        return "Tree is empty";
+        cout << "Tree is empty" << endl;
+        return Data();
     }
-    string result;
-    result.append("https://quickchart.io/graphviz?graph=digraph{");
-    root->print(result);
-    result.append("}");
-    return result;
+    nodeAVL *temp = root->find(x);
+    if (temp == nullptr) {
+        cout << "Element not found" << endl;
+        return Data();
+    }
+    return temp->info;
+}
+
+void TreeAVL::print() {
+    root->print("", "", "");
 }
 
 void TreeAVL::balance() {
@@ -61,6 +66,7 @@ TreeAVL::TreeAVL(string file) {
     for (auto &key : keys) {
         add(key);
     }
+    col_keys = keys.size();
 }
 
 bool TreeAVL::fileCheck(const string& name) {
@@ -81,4 +87,16 @@ int TreeAVL::getCol_rotations() const {
         return 0;
     else
         return root->getCol_rotations();
+}
+
+void TreeAVL::dell(string x) {
+    if (root == nullptr) {
+        cout << "Tree is empty" << endl;
+        return;
+    }
+    root = root->dell(x);
+}
+
+double TreeAVL::median_rotations() {
+    return (double)getCol_rotations() / col_keys;
 }

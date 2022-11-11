@@ -3,6 +3,7 @@
 //
 
 #include "BinWriter.h"
+
 void BinWriter::writeBin(string name, string nameBin){
     if (fileCheck(name))
     {
@@ -115,6 +116,20 @@ void BinWriter::readBin(string name, vector<Data> &Datas) {
             Datas.push_back(*tmp);
         in.close();
     }
+}
+
+Data BinWriter::findByKey(string name, string num) {
+    Data res = Data();
+    if (fileCheck(name)) {
+        ifstream in(name, ios::binary);
+        Data *tmp = new Data();
+        while (in.read((char *) tmp, sizeof(Data))) {
+            if (tmp->num == num)
+                return *tmp;
+        }
+        in.close();
+    }
+    return res;
 }
 
 

@@ -83,22 +83,12 @@ string nodeAVL::toString() {
     return info.num;
 }
 
-void nodeAVL::print(string &resul) const {
-    if (l != nullptr) {
-        resul.append(info.toString());
-        resul.append("->");
-        resul.append(l->info.toString());
-        resul.append(";");
-        l->print(resul);
-    }
-    if (r != nullptr) {
-        resul.append(info.toString());
-        resul.append("->");
-        resul.append(r->info.toString());
-        resul.append(";");
-        r->print(resul);
-    }
-
+void nodeAVL::print(string const & rpref, string const & cpref, string const & lpref ) {
+    if (r)
+        r->print(rpref + "  ", rpref + "\u250C\u2500", rpref + "\u2502 ");
+    cout << cpref << info.num << endl;
+    if (l)
+        l->print( lpref + "\u2502 ", lpref + "\u2514\u2500", lpref + "  ");
 }
 
 int nodeAVL::getCol_rotations() const {
