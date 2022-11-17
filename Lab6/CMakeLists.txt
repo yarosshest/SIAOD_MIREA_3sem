@@ -1,0 +1,1 @@
+add_executable(Lab6 main.cpp grav.cpp Ui.cpp)
