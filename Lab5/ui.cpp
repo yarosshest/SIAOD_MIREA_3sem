@@ -121,7 +121,8 @@ void ui::start() {
 void ui::binMenu() {
     string file = chooseFile();
     BinWriter binWriter;
-    binWriter.writeBin(file, "file.bin");
+    Data* dd;
+//    binWriter.writeBin(file, "file.bin");
     bool exit = false;
     while (!exit){
         cout << "choose action" << endl;
@@ -135,7 +136,9 @@ void ui::binMenu() {
                 cout << "enter index" << endl;
                 int index;
                 cin >> index;
-                cout << binWriter.readData("file.bin",index)->toString() << endl;
+                dd= binWriter.readData("file.bin",index);
+                cout<< dd->num<<" "<<dd->address<<" "<<dd->name<<endl;
+
                 break;
             case 2:
                 break;

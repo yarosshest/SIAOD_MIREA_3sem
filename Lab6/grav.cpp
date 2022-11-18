@@ -89,6 +89,11 @@ int grav::diikstra(int a, int b) {
                 minIndex = j;
             }
         }
+
+
+        if (minIndex == -1) {
+            break;
+        }
         visited[minIndex] = true;
         for (int j = 0; j < size; ++j) {
             if (!visited[j] && matrix[minIndex][j] > 0 && distance[minIndex] != INT_MAX && distance[minIndex] + matrix[minIndex][j] < distance[j]) {
@@ -96,5 +101,7 @@ int grav::diikstra(int a, int b) {
             }
         }
     }
-    return distance[b];
+    if (distance[b] == INT_MAX) {
+        return -1;
+    }
 }
