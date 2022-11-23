@@ -99,7 +99,7 @@ int BinWriter::getIndexById(string name, int id) {
         Data *tmp = new Data();
         int index = 0;
         while (in.read((char *) tmp, sizeof(Data))) {
-            if (stoi(tmp->num) == id)
+            if (tmp->getNum() == id)
                 return index;
             index++;
         }
@@ -118,13 +118,13 @@ void BinWriter::readBin(string name, vector<Data> &Datas) {
     }
 }
 
-Data BinWriter::findByKey(string name, string num) {
+Data BinWriter::findByKey(string name, int num) {
     Data res = Data();
     if (fileCheck(name)) {
         ifstream in(name, ios::binary);
         Data *tmp = new Data();
         while (in.read((char *) tmp, sizeof(Data))) {
-            if (tmp->num == num)
+            if (tmp->getNum() == num)
                 return *tmp;
         }
         in.close();

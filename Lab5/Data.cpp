@@ -4,52 +4,56 @@
 
 #include "Data.h"
 
-#include <utility>
+int Data::getNum() {
+    return stoi(num);
+}
 
-Data::Data(string num, string name, string address) {
-    this->num = std::move(num);
-    this->name = std::move(name);
-    this->address = std::move(address);
+Data::Data(char num[200], char name[200], char address[200]) {
+    strcpy_s(this->num, num);
+    strcpy_s(this->name, name);
+    strcpy_s(this->address, address);
 }
 
 bool Data::operator==(const Data &a) const {
-    return num == a.num;
+    return stoi(num) == stoi(a.num);
 }
 
 bool Data::operator!=(const Data &a) const {
-    return num != a.num;
+    return stoi(num) != stoi(a.num);
 }
 
 bool Data::operator>(const Data &a) const {
-    return num > a.num;
+    return stoi(num) > stoi(a.num);
 }
 
 bool Data::operator<(const Data &a) const {
-    return num < a.num;
+    return stoi(num) < stoi(a.num);
 }
 
 bool Data::operator>=(const Data &a) const {
-    return num >= a.num;
+    return stoi(num) >= stoi(a.num);
 }
 
 bool Data::operator<=(const Data &a) const {
-    return num <= a.num;
+    return stoi(num) <= stoi(a.num);
 }
 Data::Data(vector<char*> data){
-    num = string(data[0]);
-    name = string(data[1]);
-    address = string(data[2]);
+    strcpy_s(this->num, data[0]);
+    strcpy_s(this->name, data[1]);
+    strcpy_s(this->address, data[2]);
 }
 
 Data::Data() {
-    num = "-";
-    name = "-";
-    address = "-";
+    strcpy_s(num, "-");
+    strcpy_s(name, "-");
+    strcpy_s(address, "-");
 }
 
 string Data::toString() const {
     return num;
 }
+
+
 
 Data::Data(bool ui) {
     if (ui){
@@ -61,4 +65,30 @@ Data::Data(bool ui) {
         cin >> address;
     }
 
+}
+
+void Data::setNum(char *num) {
+    strcpy_s(this->num, num);
+}
+
+void Data::setName(char *name) {
+    strcpy_s(this->name, name);
+}
+
+void Data::setAddress(char *address) {
+    strcpy_s(this->address, address);
+}
+
+string Data::getName() {
+    string s = name;
+    return s;
+}
+
+string Data::getAddress() {
+    string s = address;
+    return s;
+}
+
+string Data::print() {
+    return string(num) + " " + string(name) + " " + string(address);
 }

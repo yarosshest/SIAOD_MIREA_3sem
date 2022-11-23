@@ -1,6 +1,6 @@
 #include "UI.h"
 void UI::start() {
-    TreeAVL tree;
+    Tree tree;
     vector<char> keys;
     while (!isExit){
         cout << menu;
@@ -10,16 +10,20 @@ void UI::start() {
             case 1: {
                 cout << "Enter the number of elements: ";
                 cin >> n;
+                if (n > 0) {
                 while (n > 0) {
                     char key = 97 + rand() % 26;
                     if (find(keys.begin(), keys.end(), key) == keys.end()) {
                         keys.push_back(key);
-                        n = n-1;
+                        n = n - 1;
                     }
                 }
                 sort(keys.begin(), keys.end());
-                tree = TreeAVL(keys);
+                tree = Tree(keys);
                 cout << "Tree created" << endl;
+                }
+                else
+                    cout << "Incorrect number of elements" << endl;
                 break;
             }
             case 2: {

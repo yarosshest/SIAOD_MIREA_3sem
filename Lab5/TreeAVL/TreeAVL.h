@@ -19,14 +19,13 @@ class TreeAVL {
 public:
     explicit TreeAVL(string file);
     void add(Data x);
-    void dell(string x);
+    void dell(int x);
     void print();
-    void balance();
     static vector<Data> reedFile(string path);
     static bool fileCheck(const string& name) ;
     [[nodiscard]] int getCol_rotations() const;
     double median_rotations();
-    Data find(string x);
+    Data find(int x);
 };
 
 

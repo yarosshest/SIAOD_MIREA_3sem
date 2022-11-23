@@ -3,7 +3,8 @@
 //
 
 #include "grav.h"
-
+//Конструктор графа по умолчанию
+//Создает пустую матрицу смежности
 grav::grav() {
     size = 1;
     matrix = new int*[size];
@@ -12,7 +13,8 @@ grav::grav() {
     }
     matrix[0][0] = 0;
 }
-
+//Метод добавления ребра
+//Если вершины не существуют, то заменяет матрицу смежности на новую с большим размером и добавляет ребро в нее.
 void grav::addEdge(int a, int b, int weight) {
     if (a >= size || b >= size) {
         int newSize = max(a, b) + 1;
@@ -34,6 +36,8 @@ void grav::addEdge(int a, int b, int weight) {
     matrix[a][b] = weight;
 }
 
+//Метод вывода матрицы смежности
+//Выводит матрицу смежности в консоль
 void grav::print() {
     for (int i = 0; i < size; ++i) {
         for (int j = 0; j < size; ++j) {
@@ -43,8 +47,8 @@ void grav::print() {
     }
 }
 
-
-
+//Метод обхода в глубину
+//Обходит граф в глубину и помечает посещенные вершины
 void grav::deppTeb(int a, bool *visited) {
     visited[a] = true;
     for (int i = 0; i < size; ++i) {
@@ -52,9 +56,10 @@ void grav::deppTeb(int a, bool *visited) {
             deppTeb(i, visited);
         }
     }
-
 }
 
+//Метод проверки связности графа
+//Создает массив посещенных вершин и запускает метод обхода в глубину
 bool grav::connected() {
     bool *visited = new bool[size];
     for (int i = 0; i < size; ++i) {
@@ -72,6 +77,9 @@ bool grav::connected() {
     return result;
 }
 
+//Метод поиска кратчайшего пути по алгоритму Дейкстры
+//Создается массив расстояний до вершин, массив посещенных вершин и массив предков вершин в кратчайшем пути
+// до них из начальной вершины a и запускается алгоритм Дейкстры для поиска кратчайшего пути до вершины b из вершины a.
 int grav::diikstra(int a, int b) {
     int *distance = new int[size];
     bool *visited = new bool[size];

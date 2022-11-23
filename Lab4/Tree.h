@@ -2,19 +2,18 @@
 // Created by yaros on 26.10.2022.
 //
 
-#ifndef SIAOD_TREEAVL_H
+#ifndef SIAOD_TREE_H
 #define SIAOD_TREE_H
 #include <iostream>
 #include "node.h"
 using namespace std;
 
-class TreeAVL {
-    nodeAVL *root = nullptr;
+class Tree {
+    node *root = nullptr;
     vector<char> keys;
 public:
-    TreeAVL();
-    explicit TreeAVL(vector<char> k);
-    string print();
+    Tree();
+    explicit Tree(vector<char> k);
     int height(char x);
     int countLeft();
     void printLeft();
@@ -22,4 +21,4 @@ public:
 };
 
 
-#endif //SIAOD_TREEAVL_H
+#endif //SIAOD_TREE_H

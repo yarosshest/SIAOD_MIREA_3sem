@@ -11,16 +11,16 @@ string toString(char &value) {
 
 void node::print(string &resul) {
     if (l != nullptr) {
-        resul.append(info.num);
+        resul.append(to_string(info.getNum()));
         resul.append("->");
-        resul.append(l->info.num);
+        resul.append(to_string(l->info.getNum()));
         resul.append(";");
         l->print(resul);
     }
     if (r != nullptr) {
-        resul.append(info.num);
+        resul.append(to_string(info.getNum()));
         resul.append("->");
-        resul.append(r->info.num);
+        resul.append(to_string(r->info.getNum()));
         resul.append(";");
         r->print(resul);
     }
@@ -104,11 +104,11 @@ void node::printhight(const string &prefix, bool root, bool last) {
         v[i]->printhight( prefix + (root ? "" : (last ? "  " : "\u2502 ")), false, i + 1 >= v.size());
 }
 
-Data node::findByKey(string key) {
-    if (info.num == key) {
+Data node::findByKey(int key) {
+    if (info.getNum() == key) {
         return info;
     }
-    else if (key < info.num) {
+    else if (key < info.getNum()) {
         return l->findByKey(key);
     }
     else {

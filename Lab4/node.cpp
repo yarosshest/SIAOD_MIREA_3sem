@@ -3,31 +3,12 @@
 //
 
 #include "node.h"
-string toString(char &value) {
-    std::ostringstream os;
-    os << value;
-    return os.str();
-}
-
-void nodeAVL::print(string &resul) {
-    if (l != nullptr) {
-        resul.append(toString(info));
-        resul.append("->");
-        resul.append(toString(l->info));
-        resul.append(";");
-        l->print(resul);
-    }
-    if (r != nullptr) {
-        resul.append(toString(info));
-        resul.append("->");
-        resul.append(toString(r->info));
-        resul.append(";");
-        r->print(resul);
-    }
-
-}
-
-nodeAVL::nodeAVL(vector<char> &keys) {
+//Конструктор узла по вектору ключей
+//Если вектор  ключей содержит 1 элемент, то узел является листом. Иначе если вектор ключей содержит 2 элемента,
+// то создаться левый лист с ключем по индексу 0 а ключ  по индексу 1 присваивается  полю info узла.
+// Если вектор ключей , больше 2 элементов, то создаться левый узел с ключами от 0 до середины вектора ключей,
+// середина вектора ключей присваивается полю info узла, а правый узел создаётся  с ключами от середины вектора ключей до конца вектора ключей.
+node::node(vector<char> &keys) {
     if (keys.size() == 1) {
         info = keys[0];
     }
@@ -38,7 +19,7 @@ nodeAVL::nodeAVL(vector<char> &keys) {
         vector<char> nl(nlB, nlE);
         vector<char> cop;
         copy(nl.begin(), nl.end(), back_inserter(cop));
-        l = new nodeAVL(cop);
+        l = new node(cop);
     }
     else {
         int n = (keys.size() /2) ;
@@ -55,12 +36,14 @@ nodeAVL::nodeAVL(vector<char> &keys) {
 
         copy(left.begin(), left.end(), back_inserter(leftC));
         copy(right.begin(), right.end(), back_inserter(rightC));
-        l = new nodeAVL(leftC);
-        r = new nodeAVL(rightC);
+        l = new node(leftC);
+        r = new node(rightC);
     }
 }
-
-int nodeAVL::height(char x) {
+//Метод нахождения высоты узла по ключу
+//Если ключ узла равен ключу, который передаётся в метод, то возвращается 1. Иначе если ключ узла меньше ключа, который передаётся в метод,
+//то возвращается высота правого узла +1. Иначе если ключ узла больше ключа, который передаётся в метод, то возвращается высота левого узла +1.
+int node::height(char x) {
     if (info == x) {
         return 1;
     }
@@ -72,7 +55,10 @@ int nodeAVL::height(char x) {
     }
 }
 
-int nodeAVL::countChild() {
+//Метод нахождения сыновей узла
+//Количество сыновей приравнивается к 0. Если существует левый узел, то количество сыновей увеличивается на 1 + количество сыновей левого узла,
+// если существует правый узел, то количество сыновей увеличивается на 1 + количество сыновей правого узла.
+int node::countChild() {
     int count = 0;
     if (l != nullptr) {
         count = count + 1 + l->countChild();
@@ -82,20 +68,22 @@ int nodeAVL::countChild() {
     }
     return count;
 }
-
-void nodeAVL::printLeft(string const & rpref, string const & cpref, string const & lpref ) {
+//Метод вывода дерева слева на право
+//Если существует правый узел, то выводится правый узел, затем выводится ключ узла, затем выводится левый узел.
+void node::printLeft(string const & rpref, string const & cpref, string const & lpref ) {
     if (r)
         r->printLeft(rpref + "  ", rpref + "\u250C\u2500", rpref + "\u2502 ");
     cout << cpref << info << endl;
     if (l)
         l->printLeft( lpref + "\u2502 ", lpref + "\u2514\u2500", lpref + "  ");
 }
-
-void nodeAVL::printhight(const string &prefix, bool root, bool last) {
+//Метод вывода дерева сверху вниз
+//Выводится префикс и ключ узла, затем выводится левый узел, затем выводится левый узел, затем выводится правый узел.
+void node::printhight(const string &prefix, bool root, bool last) {
     cout << prefix << (root ? "" : (last ? "\u2514\u2500" : "\u251C\u2500")) << info << endl;
     if (!l && !r)
         return;
-    vector<nodeAVL*> v;
+    vector<node*> v;
     if (l)
         v.push_back(l);
     if (r)

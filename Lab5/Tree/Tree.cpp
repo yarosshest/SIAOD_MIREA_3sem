@@ -3,17 +3,8 @@
 //
 
 #include "Tree.h"
-string Tree::print() {
-    if (root == nullptr) {
-        return "Tree is empty";
-    }
-    string result;
-    result.append("https://quickchart.io/graphviz?graph=digraph{");
-    root->print(result);
-    result.append("}");
-    return result;
-}
 
+#include <utility>
 Tree::Tree(vector<Data> k) {
     keys = std::move(k);
     root = new node(keys);
@@ -98,12 +89,13 @@ bool Tree::fileCheck(const string& name) {
 
 Tree::Tree(string pat) {
     keys = reedFile(std::move(pat));
+    sort(keys.begin(), keys.end());
     root = new node(keys);
 }
 
 void Tree::dell(string key) {
     Data x = Data();
-    x.num = key;
+    x.setNum(reinterpret_cast<char *>(stoi(key)));
     if (root == nullptr) {
         cout << "Tree is empty" << endl;
         return;
@@ -116,7 +108,7 @@ void Tree::dell(string key) {
     }
 }
 
-Data Tree::findByKey(string key) {
+Data Tree::findByKey(int key) {
     return root->findByKey(key);
 }
 

@@ -31,7 +31,7 @@ public:
     static bool fileCheck(const string& name) ;
     static vector<Data> reedFile(string path);
     void dell(string key);
-    Data findByKey(string key);
+    Data findByKey(int key);
     void add(Data x);
 };
 

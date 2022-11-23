@@ -3,7 +3,8 @@
 //
 
 #include "TreeAVL.h"
-
+//Метод для добавления элемента в дерево
+//Если корень пустой, то создаем новый узел и приравниваем его к корню дерева, если нет, то вызываем рекурсивную функцию для добавления элемента
 void TreeAVL::add(Data n) {
     if (root == nullptr) {
         root = new nodeAVL;
@@ -12,8 +13,10 @@ void TreeAVL::add(Data n) {
     }
     root = root->add(n);
 }
-
-Data TreeAVL::find(string x) {
+//Метод для нахождения элемента в дереве
+//Если корень пустой, то возвращаем пустой элемент, если нет, если элемента нет в ключах то возвращаем пустой элемент,
+// если нет, то вызываем рекурсивную функцию для поиска элемента
+Data TreeAVL::find(int x) {
     if (root == nullptr) {
         cout << "Tree is empty" << endl;
         return Data();
@@ -25,19 +28,17 @@ Data TreeAVL::find(string x) {
     }
     return temp->info;
 }
-
+//Метод для вывода дерева
+//Если корень пустой, то выводим сообщение, если нет, то вызываем рекурсивную функцию для вывода дерева
 void TreeAVL::print() {
-    root->print("", "", "");
-}
-
-void TreeAVL::balance() {
     if (root == nullptr) {
         cout << "Tree is empty" << endl;
-        return;
     }
-
-    root = root->balance();
+    else
+        root->print("", "", "");
 }
+//Метод для чтения файла
+//Если файл существует, то открываем его, считываем данные и добавляем их в вектор который возвращаем.
 vector<Data> TreeAVL::reedFile(string path) {
     vector<Data> res;
     if (fileCheck(path))
@@ -61,6 +62,9 @@ vector<Data> TreeAVL::reedFile(string path) {
     return res;
 }
 
+
+//Конструктор класса из файла
+//Если файл существует, то считываем данные из файла и добавляем их в дерево
 TreeAVL::TreeAVL(string file) {
     vector<Data> keys = reedFile(std::move(file));
     for (auto &key : keys) {
@@ -69,6 +73,8 @@ TreeAVL::TreeAVL(string file) {
     col_keys = keys.size();
 }
 
+//Метод для проверки существования файла
+//Если файл существует, то возвращаем true, если нет, то выводим сообщение и возвращаем false
 bool TreeAVL::fileCheck(const string& name) {
     ifstream fileSrc(name);
     if (!fileSrc)
@@ -82,6 +88,8 @@ bool TreeAVL::fileCheck(const string& name) {
     }
 }
 
+//Метод подсчета количества поворотов
+//Если корень пустой, то возвращаем 0, если нет, то вызываем рекурсивную функцию для подсчета количества поворотов
 int TreeAVL::getCol_rotations() const {
     if (root == nullptr)
         return 0;
@@ -89,7 +97,9 @@ int TreeAVL::getCol_rotations() const {
         return root->getCol_rotations();
 }
 
-void TreeAVL::dell(string x) {
+//Метод удаления элемента из дерева
+//Если корень пустой, то выводим сообщение, если нет, то вызываем рекурсивную функцию для удаления элемента
+void TreeAVL::dell(int x) {
     if (root == nullptr) {
         cout << "Tree is empty" << endl;
         return;
@@ -97,6 +107,9 @@ void TreeAVL::dell(string x) {
     root = root->dell(x);
 }
 
+
+//Метод подсчета среднего количества поворотов при добавлении элемента
+//Если корень пустой, то возвращаем 0, если нет, то вызываем рекурсивную функцию для подсчета среднего количества поворотов при добавлении элемента и делим на количество элементов
 double TreeAVL::median_rotations() {
     return (double)getCol_rotations() / col_keys;
 }

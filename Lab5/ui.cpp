@@ -13,9 +13,10 @@ void ui::timeTest() {
 
 
     cout << "in beginning file" << endl;
+//    int el_begin = 4104239; // for 10
 //    string el_begin= "9169538"; // for 1000
-//    string el_begin= "5792242"; // for 10000
-    string el_begin= "9757871"; // for 50000
+//    int el_begin= 5792242; // for 10000
+    int el_begin= 9757871; // for 50000
 //    string el_begin= "1620461"; // for 100000
 
     cout<< "Binary file" << endl;
@@ -38,9 +39,10 @@ void ui::timeTest() {
 
     cout << "-------------------------" << endl;
     cout << "in middle file" << endl;
+//    int el_middle = 7749565; // for 10
 //    string el_middle = "4371153"; // for 1000
-//    string el_middle = "1050535"; // for 10000
-    string el_middle = "3995014"; // for 50000
+//    int el_middle = 1050535; // for 10000
+    int el_middle = 3995014; // for 50000
 //    string el_middle = "4966234"; // for 100000
 
     cout<< "Binary file" << endl;
@@ -63,9 +65,10 @@ void ui::timeTest() {
 
     cout << "-------------------------" << endl;
     cout << "in end file" << endl;
+//    int el_end = 7425717; // for 10
 //    string el_end = "9096521"; // for 1000
-//    string el_end = "4937097"; // for 10000
-    string el_end = "2623654"; // for 50000
+//    int el_end = 4937097; // for 10000
+    int el_end = 2623654; // for 50000
 //    string el_end = "9582059"; // for 100000
 
     cout<< "Binary file" << endl;
@@ -135,7 +138,7 @@ void ui::binMenu() {
                 cout << "enter index" << endl;
                 int index;
                 cin >> index;
-                cout << binWriter.readData("file.bin",index)->toString() << endl;
+                cout << binWriter.readData("file.bin",index)->print() << endl;
                 break;
             case 2:
                 break;
@@ -208,7 +211,7 @@ void ui::treeMenu() {
             case 1:
                 cout << "enter key" << endl;
                 cin >> key;
-                cout << tree.findByKey(key).toString() << endl;
+                cout << tree.findByKey(stoi(key)).print() << endl;
                 break;
             case 2:
                 cout << "enter uiser" << endl;
@@ -253,7 +256,7 @@ void ui::treeAVLMenu() {
             case 1:
                 cout << "enter key" << endl;
                 cin >> key;
-                cout << tree.find(key).toString() << endl;
+                cout << tree.find(stoi(key)).print() << endl;
                 break;
             case 2:
                 cout << "enter uiser" << endl;
@@ -263,7 +266,7 @@ void ui::treeAVLMenu() {
             case 3:
                 cout << "enter key" << endl;
                 cin >> key;
-                tree.dell(key);
+                tree.dell(stoi(key));
                 break;
             case 4:
                 tree.print();

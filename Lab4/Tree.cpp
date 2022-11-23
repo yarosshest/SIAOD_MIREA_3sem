@@ -3,23 +3,17 @@
 //
 
 #include "Tree.h"
-string TreeAVL::print() {
-    if (root == nullptr) {
-        return "Tree is empty";
-    }
-    string result;
-    result.append("https://quickchart.io/graphviz?graph=digraph{");
-    root->print(result);
-    result.append("}");
-    return result;
-}
 
-TreeAVL::TreeAVL(vector<char> k) {
+//Конструктор дерева по вектору ключей
+//Поле keys заполняется вектором ключей, корню присваивается значение элемента с ключами
+Tree::Tree(vector<char> k) {
     keys = k;
-    root = new nodeAVL(keys);
+    root = new node(keys);
 }
 
-int TreeAVL::height(char x) {
+//Функция подсчёта  уровня узла
+//Ссылка на корень дерева проверяется  на nullptr если не nullptr, если узел есть в дереве, то вызывается функция подсчета уровня узла
+int Tree::height(char x) {
     if (root == nullptr) {
         cout << "Tree is empty" << endl;
         return -1;
@@ -31,16 +25,18 @@ int TreeAVL::height(char x) {
         return -1;
     }
 }
-
-int TreeAVL::countLeft() {
+//Функция для подсчета количества левых узлов в поддереве исходного дерева.
+//Ссылка на корень дерева проверяется  на nullptr если не nullptr, то  в левом поддереве вызывается функция countChild
+int Tree::countLeft() {
     if (root == nullptr) {
         cout << "Tree is empty" << endl;
         return -1;
     }
     return root->l->countChild() +1;
 }
-
-void TreeAVL::printLeft() {
+//Вывод дерева слева направо
+//Ссылка на корень дерева проверяется на nullptr если не nullptr, то вызывается метод printLeft
+void Tree::printLeft() {
     if (root == nullptr) {
         cout << "Tree is empty" << endl;
         return;
@@ -48,7 +44,9 @@ void TreeAVL::printLeft() {
     root->printLeft();
 }
 
-void TreeAVL::printHigh() {
+//Вывод дерева с верху вниз
+//Ссылка на корень дерева проверяется на nullptr если не nullptr, то вызывается метод printHigh
+void Tree::printHigh() {
     if (root == nullptr) {
         cout << "Tree is empty" << endl;
         return;
@@ -56,6 +54,8 @@ void TreeAVL::printHigh() {
     root->printhight();
 }
 
-TreeAVL::TreeAVL() {
+//Конструктор пустого дерева
+//Ссылка на корень дерева приравнивается к nullptr
+Tree::Tree() {
     root = nullptr;
 }

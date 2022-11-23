@@ -27,8 +27,8 @@ public:
     string toString();
     void print(string const & rpref, string const & cpref, string const & lpref );
     [[nodiscard]] int getCol_rotations() const;
-    nodeAVL *find(string x);
-    nodeAVL *dell(string x);
+    nodeAVL *find(int x);
+    nodeAVL *dell(int x);
 };
 
 
