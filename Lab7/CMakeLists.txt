@@ -1,0 +1,1 @@
+add_executable(Lab7 main.cpp)
