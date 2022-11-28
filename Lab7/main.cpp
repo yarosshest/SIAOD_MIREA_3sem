@@ -11,6 +11,6 @@ int main() {
 //    k = RLE(n);
 //    cout << k << ' '<< n;
 
-    cout << LZ77(n);
+    cout << LZ77(n, 5);
     return 0;
 }

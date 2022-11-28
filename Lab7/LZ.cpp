@@ -3,6 +3,7 @@
 //
 #include <string>
 #include <list>
+#include <utility>
 using namespace std;
 
 struct Node{
@@ -18,8 +19,8 @@ struct Node{
 struct Buffer{
 private:
     string str;
+    int size;
 public:
-    int size = 0;
     string buffer;
     int pos = 0;
 
@@ -33,30 +34,43 @@ public:
     }
 
     Buffer(string str, int size){
-        this->str = str;
+        this->str = std::move(str);
         this->size = size;
         buffer = "";
-    }
-
-    int, int find(string str){
-        int pos = str.find(buffer);
-        if (pos != -1){
-            return pos;
-        }
-        return str.find(buffer.substr(1));
     }
 };
 
 
 
 
-string LZ77 (string line){
+string LZ77 (string line, int size){
+    Buffer buffer(line, size);
     list<Node> res;
-    int pos = 1;
-    Buffer buffer = Buffer(line, line.size()/2 );
-    buffer.shift(1);
-    res.push_back(Node{0,0,line[0]});
-    while (pos < line.size()){
-        offset, length = findMatching(buffer, pos)
+    while (buffer.pos < line.size()){
+        int offset = 0;
+        int length = 0;
+        char next = ' ';
+        for (int i = 0; i < size; i++){
+            int j = 0;
+            char a = buffer.buffer[(i + j) % (size - 1)];
+            char b = line[buffer.pos + j];
+            while (buffer.buffer[(i + j) % (size - 1)] == line[buffer.pos + j]){
+                j++;
+            }
+            if (j > length){
+                length = j;
+                offset = buffer.buffer.size() - i;
+                next = line[buffer.pos + j];
+            }
+        }
+        if (length == 0)
+            next = line[buffer.pos];
+        res.push_back({offset,length,next});
+        buffer.shift(length + 1);
     }
+    string result = "";
+    for (auto & i : res){
+        result += i.toString();
+    }
+    return result;
 }
