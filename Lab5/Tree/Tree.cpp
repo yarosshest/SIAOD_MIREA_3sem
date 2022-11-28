@@ -10,17 +10,13 @@ Tree::Tree(vector<Data> k) {
     root = new node(keys);
 }
 
-int Tree::height(Data x) {
+int Tree::height(int x) {
     if (root == nullptr) {
         cout << "Tree is empty" << endl;
         return -1;
     }
-    if (find(keys.begin(), keys.end(), x) != keys.end())
+    else
         return root->height(x);
-    else{
-        cout << "Element not found" << endl;
-        return -1;
-    }
 }
 
 int Tree::countLeft() {
@@ -95,7 +91,7 @@ Tree::Tree(string pat) {
 
 void Tree::dell(string key) {
     Data x = Data();
-    x.setNum(reinterpret_cast<char *>(stoi(key)));
+    x.setNum(const_cast<char *>(key.c_str()));
     if (root == nullptr) {
         cout << "Tree is empty" << endl;
         return;
@@ -103,8 +99,6 @@ void Tree::dell(string key) {
     if (find(keys.begin(), keys.end(), x) != keys.end()) {
         keys.erase(find(keys.begin(), keys.end(), x));
         root = new node(keys);
-    } else{
-        cout << "Element not found" << endl;
     }
 }
 
@@ -113,10 +107,9 @@ Data Tree::findByKey(int key) {
 }
 
 void Tree::add(Data x) {
-    if (find(keys.begin(), keys.end(), x) != keys.end()) {
-        cout << "Element already exists" << endl;
-        return;
-    }
+    int ind = BinWriter::addData("bin.bin", x);
+    x.setShift(ind);
     keys.push_back(x);
+    sort(keys.begin(), keys.end());
     root = new node(keys);
 }

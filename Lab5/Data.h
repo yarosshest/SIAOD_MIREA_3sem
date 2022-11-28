@@ -6,6 +6,7 @@
 #define SIAOD_DATA_H
 #include <string>
 #include <vector>
+#include <cstring>
 #include <sstream>
 #include <utility>
 #include <iostream>
@@ -14,17 +15,16 @@ class Data {
     char num[200];
     char name[200];
     char address[200];
+    int shift = -1;
 public:
     Data();
     explicit Data(bool ui);
     Data(char num[200], char name[200], char address[200]);
-
-    void setNum(char num[200]);
-    void setName(char name[200]);
-    void setAddress(char address[200]);
     int getNum();
-    string getName();
-    string getAddress();
+    void setNum(char num[200]);
+    int getShift();
+    void setShift(int shift);
+
 
     string print();
     explicit Data(vector<char*> data);
@@ -34,8 +34,6 @@ public:
     bool operator<(const Data& a) const;
     bool operator>=(const Data& a) const;
     bool operator<=(const Data& a) const;
-    [[nodiscard]] string toString() const;
-
 };
 
 

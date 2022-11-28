@@ -3,24 +3,19 @@
 //
 
 #include "node.h"
-string toString(char &value) {
-    std::ostringstream os;
-    os << value;
-    return os.str();
-}
 
 void node::print(string &resul) {
     if (l != nullptr) {
-        resul.append(to_string(info.getNum()));
+        resul.append(to_string(key));
         resul.append("->");
-        resul.append(to_string(l->info.getNum()));
+        resul.append(to_string(l->key));
         resul.append(";");
         l->print(resul);
     }
     if (r != nullptr) {
-        resul.append(to_string(info.getNum()));
+        resul.append(to_string(key));
         resul.append("->");
-        resul.append(to_string(r->info.getNum()));
+        resul.append(to_string(r->key));
         resul.append(";");
         r->print(resul);
     }
@@ -29,10 +24,12 @@ void node::print(string &resul) {
 
 node::node(vector<Data> &keys) {
     if (keys.size() == 1) {
-        info = keys[0];
+        key = keys[0].getNum();
+        ptr = keys[0].getShift();
     }
     else if (keys.size() == 2) {
-        info = keys[1];
+        key = keys[1].getNum();
+        ptr = keys[1].getShift();
         auto nlB = keys.begin();
         auto nlE = keys.end()-1;
         vector<Data> nl(nlB, nlE);
@@ -48,7 +45,9 @@ node::node(vector<Data> &keys) {
         auto nrB = keys.begin()+n+1;
         auto nrE = keys.end();
         vector<Data> right(nrB, nrE);
-        info = keys[n];
+
+        key = keys[n].getNum();
+        ptr = keys[n].getShift();
 
         vector<Data> leftC;
         vector<Data> rightC;
@@ -60,11 +59,11 @@ node::node(vector<Data> &keys) {
     }
 }
 
-int node::height(Data x) {
-    if (info == x) {
+int node::height(int x) {
+    if (key == x) {
         return 1;
     }
-    else if (x < info) {
+    else if (x < key) {
         return 1 + l->height(x);
     }
     else {
@@ -86,13 +85,13 @@ int node::countChild() {
 void node::printLeft(string const & rpref, string const & cpref, string const & lpref ) {
     if (r)
         r->printLeft(rpref + "  ", rpref + "\u250C\u2500", rpref + "\u2502 ");
-    cout << cpref << info.toString() << endl;
+    cout << cpref << key << endl;
     if (l)
         l->printLeft( lpref + "\u2502 ", lpref + "\u2514\u2500", lpref + "  ");
 }
 
 void node::printhight(const string &prefix, bool root, bool last) {
-    cout << prefix << (root ? "" : (last ? "\u2514\u2500" : "\u251C\u2500")) << info.toString() << endl;
+    cout << prefix << (root ? "" : (last ? "\u2514\u2500" : "\u251C\u2500")) << key << endl;
     if (!l && !r)
         return;
     vector<node*> v;
@@ -104,15 +103,15 @@ void node::printhight(const string &prefix, bool root, bool last) {
         v[i]->printhight( prefix + (root ? "" : (last ? "  " : "\u2502 ")), false, i + 1 >= v.size());
 }
 
-Data node::findByKey(int key) {
-    if (info.getNum() == key) {
-        return info;
+Data node::findByKey(int x) {
+    if (x == key) {
+        return *BinWriter::readData("bin.bin", ptr);
     }
-    else if (key < info.getNum()) {
-        return l->findByKey(key);
+    else if (x < key) {
+        return l->findByKey(x);
     }
     else {
-        return r->findByKey(key);
+        return r->findByKey(x);
     }
 }
 

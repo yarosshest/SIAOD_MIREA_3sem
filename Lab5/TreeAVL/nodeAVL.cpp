@@ -77,29 +77,25 @@ nodeAVL *nodeAVL::balance() {
 //Метод добавления узла
 //Если значение узла меньше значения текущего узла то проверяем левое поддерево на пустоту если оно пустое то создаем новый узел и приравниваем его к левому поддереву текущего узла если нет то вызываем метод add для левого поддерева
 // если нет то проверяем левое поддерево на пустоту если оно пустое то создаем новый узел и приравниваем его к левому поддереву текущего узла если нет то вызываем метод add для левого поддерева
-nodeAVL *nodeAVL::add(Data x) {
-    if (x < info) {
+nodeAVL *nodeAVL::add(int val, int uk ) {
+    if (val < key) {
         if (l == nullptr) {
             l = new nodeAVL;
-            l->info = x;
+            l->key = val;
+            l->ptr = uk;
         } else {
-            l = l->add(x);
+            l = l->add(val, uk);
         }
     } else {
         if (r == nullptr) {
             r = new nodeAVL;
-            r->info = x;
+            r->key = val;
+            r->ptr = uk;
         } else {
-            r = r->add(x);
+            r = r->add(val, uk);
         }
     }
     return balance();
-}
-
-
-
-string nodeAVL::toString() {
-    return to_string(info.getNum());
 }
 
 
@@ -109,7 +105,7 @@ string nodeAVL::toString() {
 void nodeAVL::print(string const & rpref, string const & cpref, string const & lpref ) {
     if (r)
         r->print(rpref + "  ", rpref + "\u250C\u2500", rpref + "\u2502 ");
-    cout << cpref << info.getNum() << endl;
+    cout << cpref << key << endl;
     if (l)
         l->print( lpref + "\u2502 ", lpref + "\u2514\u2500", lpref + "  ");
 }
@@ -126,8 +122,8 @@ int nodeAVL::getCol_rotations() const {
 // если нет то проверяем левое поддерево на пустоту если оно не пустое то вызываем метод find для левого поддерева
 // если нет то проверяем правое поддерево на пустоту если оно не пустое то вызываем метод find для правого поддерева
 nodeAVL *nodeAVL::find(int x) {
-    if (info.getNum() == x) return this;
-    if (x < info.getNum()) {
+    if (key == x) return this;
+    if (x < key) {
         if (l == nullptr) return nullptr;
         return l->find(x);
     } else {
@@ -143,7 +139,7 @@ nodeAVL *nodeAVL::find(int x) {
 // Если значение узла не равно значению искомого узла то проверяем левое поддерево на пустоту если оно не пустое то вызываем метод remove для левого поддерева
 // если нет то проверяем правое поддерево на пустоту если оно не пустое то вызываем метод remove для правого поддерева
 nodeAVL *nodeAVL::dell(int x) {
-    if (info.getNum() == x) {
+    if (key == x) {
         if (l == nullptr && r == nullptr) {
             delete this;
             return nullptr;
@@ -160,10 +156,11 @@ nodeAVL *nodeAVL::dell(int x) {
         }
         nodeAVL *p = r;
         while (p->l != nullptr) p = p->l;
-        info = p->info;
-        r = r->dell(p->info.getNum());
+        key = p->key;
+        ptr = p->ptr;
+        r = r->dell(p->key);
     } else {
-        if (x < info.getNum()) {
+        if (x < key) {
             if (l == nullptr) return this;
             l = l->dell(x);
         } else {

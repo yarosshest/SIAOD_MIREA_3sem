@@ -11,14 +11,16 @@
 #include <sstream>
 #include <vector>
 #include <string>
+#include "../File/BinWriter.h"
 using namespace std;
 class node {
 public:
-    Data info = Data();
+    int key;
+    int ptr;
     node *l = nullptr;
     node *r = nullptr;
     explicit node(vector<Data> &keys);
-    int height(Data x);
+    int height(int x);
     int countChild();
     void print(string &resul);
     void printLeft(string const & rpref = "", string const & cpref = "", string const & lpref = "");

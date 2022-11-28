@@ -23,11 +23,12 @@ public:
     void readBin(string name, vector<Data> &Datas);
     void writeData(string name, Data au, int index);
     void outputBin(string name);
-    Data* readData(string name, int index);
+    static Data* readData(string name, int index);
     void dellData(string name, int index);
+    static int addData(string name, Data au);
     void rep(string date,string reg ,string num, string buk, string name);
     void showMod(string date,string mod ,string name);
-    bool fileCheck(string name) const;
+    static bool fileCheck(string name) ;
     int getIndexById(string name, int id);
     Data findByKey(string name, int num);
 };

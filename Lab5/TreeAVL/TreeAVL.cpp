@@ -6,12 +6,14 @@
 //Метод для добавления элемента в дерево
 //Если корень пустой, то создаем новый узел и приравниваем его к корню дерева, если нет, то вызываем рекурсивную функцию для добавления элемента
 void TreeAVL::add(Data n) {
+    int ind = BinWriter::addData("bin.bin", n);
     if (root == nullptr) {
         root = new nodeAVL;
-        root->info = n;
+        root->key = n.getNum();
+        root->ptr = ind;
         return;
     }
-    root = root->add(n);
+    root = root->add(n.getNum(), ind);
 }
 //Метод для нахождения элемента в дереве
 //Если корень пустой, то возвращаем пустой элемент, если нет, если элемента нет в ключах то возвращаем пустой элемент,
@@ -26,7 +28,7 @@ Data TreeAVL::find(int x) {
         cout << "Element not found" << endl;
         return Data();
     }
-    return temp->info;
+    return *BinWriter::readData("bin.bin", temp->ptr);
 }
 //Метод для вывода дерева
 //Если корень пустой, то выводим сообщение, если нет, то вызываем рекурсивную функцию для вывода дерева
@@ -41,6 +43,7 @@ void TreeAVL::print() {
 //Если файл существует, то открываем его, считываем данные и добавляем их в вектор который возвращаем.
 vector<Data> TreeAVL::reedFile(string path) {
     vector<Data> res;
+    int i = 0;
     if (fileCheck(path))
     {
         ifstream file (path, ios::in);
@@ -56,6 +59,8 @@ vector<Data> TreeAVL::reedFile(string path) {
                 tmp_char = strtok(NULL, ";");
             }
             res.emplace_back(data);
+            res.back().setShift(i);
+            i++;
         }
         file.close();
     }

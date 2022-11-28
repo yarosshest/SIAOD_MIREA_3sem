@@ -12,6 +12,7 @@ Data::Data(char num[200], char name[200], char address[200]) {
     strcpy_s(this->num, num);
     strcpy_s(this->name, name);
     strcpy_s(this->address, address);
+    this->shift = -1;
 }
 
 bool Data::operator==(const Data &a) const {
@@ -49,11 +50,6 @@ Data::Data() {
     strcpy_s(address, "-");
 }
 
-string Data::toString() const {
-    return num;
-}
-
-
 
 Data::Data(bool ui) {
     if (ui){
@@ -67,28 +63,19 @@ Data::Data(bool ui) {
 
 }
 
+string Data::print() {
+    return string(num) + " " + string(name) + " " + string(address);
+}
+
+int Data::getShift() {
+    return shift;
+}
+
+void Data::setShift(int shift) {
+    this->shift = shift;
+}
+
 void Data::setNum(char *num) {
     strcpy_s(this->num, num);
 }
 
-void Data::setName(char *name) {
-    strcpy_s(this->name, name);
-}
-
-void Data::setAddress(char *address) {
-    strcpy_s(this->address, address);
-}
-
-string Data::getName() {
-    string s = name;
-    return s;
-}
-
-string Data::getAddress() {
-    string s = address;
-    return s;
-}
-
-string Data::print() {
-    return string(num) + " " + string(name) + " " + string(address);
-}

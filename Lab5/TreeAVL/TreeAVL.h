@@ -11,6 +11,7 @@
 #include <vector>
 #include "nodeAVL.h"
 #include "../Data.h"
+#include "../File/BinWriter.h"
 using namespace std;
 
 class TreeAVL {

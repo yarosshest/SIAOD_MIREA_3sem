@@ -80,7 +80,7 @@ void BinWriter::writeData(string name, Data au, int index) {
     }
 }
 
-bool BinWriter::fileCheck(string name) const {
+bool BinWriter::fileCheck(string name)  {
     ifstream fileSrc(name);
     if (!fileSrc)
     {
@@ -130,6 +130,17 @@ Data BinWriter::findByKey(string name, int num) {
         in.close();
     }
     return res;
+}
+
+int BinWriter::addData(string name, Data au) {
+    if (fileCheck(name)) {
+        ofstream out(name, ios::binary | ios::app);
+        out.write((char *) &au, sizeof(au));
+        out.close();
+        uintmax_t n = filesystem::file_size(name);
+        return (n / sizeof(Data)) - 1;
+    }
+    return -1;
 }
 
 

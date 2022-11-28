@@ -7,7 +7,7 @@
 void ui::timeTest() {
     string file = R"(C:\Users\yaros\CLionProjects\SIAOD_MIREA_3sem\Lab5\test_50000.txt)";
     BinWriter binWriter;
-    binWriter.writeBin(file, "file.bin");
+    binWriter.writeBin(file, "bin.bin");
     Tree tree(file);
     TreeAVL tree_avl(file);
 
@@ -21,7 +21,7 @@ void ui::timeTest() {
 
     cout<< "Binary file" << endl;
     auto start = chrono::steady_clock::now();
-    binWriter.findByKey("small.bin",el_begin);
+    binWriter.findByKey("bin.bin",el_begin);
     auto end = chrono::steady_clock::now();
     cout << "nanoseconds: " << chrono::duration_cast<chrono::nanoseconds>(end - start).count() << endl;
 
@@ -47,7 +47,7 @@ void ui::timeTest() {
 
     cout<< "Binary file" << endl;
     start = chrono::steady_clock::now();
-    binWriter.findByKey("file.bin",el_middle);
+    binWriter.findByKey("bin.bin",el_middle);
     end = chrono::steady_clock::now();
     cout << "nanoseconds: " << chrono::duration_cast<chrono::nanoseconds>(end - start).count() << endl;
 
@@ -73,7 +73,7 @@ void ui::timeTest() {
 
     cout<< "Binary file" << endl;
     start = chrono::steady_clock::now();
-    binWriter.findByKey("file.bin",el_end);
+    binWriter.findByKey("bin.bin",el_end);
     end = chrono::steady_clock::now();
     cout << "nanoseconds: " << chrono::duration_cast<chrono::nanoseconds>(end - start).count() << endl;
 

@@ -24,7 +24,7 @@ public:
     explicit Tree(vector<Data> k);
     explicit Tree(string path);
     string print();
-    int height(Data x);
+    int height(int x);
     int countLeft();
     void printLeft();
     void printHigh();
