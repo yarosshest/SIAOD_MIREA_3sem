@@ -10,13 +10,17 @@ using namespace std;
 int main() {
     setlocale(LC_ALL, "Russian");
     wstring n;
-    n = L"долделдолдилделдил";
+    n = L"Тише, мыши, кот на крыше, \n"
+        "А котята ещё выше. Кот пошёл за молоком, \n"
+        "А котята кувырком.";
 //    cin >> n;
 //    float k;
 //    k = RLE(n);
 //    cout <<' '<< n;
     ShannonFano sf;
-    cout << sf.encode(n);
+    string code = sf.encode(n);
+    cout << code << endl;
+    wcout << sf.decode(code) << endl;
 //    cout << lz.decode();
 //    LZ78 lz;
 //    cout << lz.encode(n);

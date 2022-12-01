@@ -10,6 +10,7 @@ using namespace std;
 struct ShannonFano{
     wstring line;
     string code;
+    map<wchar_t, string> codes;
 
     string encode(wstring ln){
         line = ln;
@@ -24,9 +25,22 @@ struct ShannonFano{
             keys.emplace_back(i.first, i.second);
         Tree tree(keys);
         tree.printLeft();
-        map<wchar_t, string> codes = tree.getCodes();
+        codes = tree.getCodes();
         for(wchar_t i : line)
             code += codes[i];
         return code;
+    }
+    wstring decode(string cd){
+        wstring decoded;
+        string temp;
+        for(char i : cd){
+            temp += i;
+            for(pair<wchar_t, string> j : codes)
+                if (j.second == temp){
+                    decoded += j.first;
+                    temp = "";
+                }
+        }
+        return decoded;
     }
 };
