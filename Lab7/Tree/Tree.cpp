@@ -29,6 +29,6 @@ Tree::Tree() {
 
 map<wchar_t, string> Tree::getCodes() {
     map<wchar_t, string> codes;
-    root->getCodes(codes, "0");
+    root->getCodes(codes, "");
     return codes;
 }

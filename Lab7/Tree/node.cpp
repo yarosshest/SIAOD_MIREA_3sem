@@ -75,5 +75,15 @@ void node::getCodes(map<wchar_t, string> &codes, string path) {
         codes[info[0].getKey()] = path;
 }
 
+int node::getWeight() {
+    return sum(info);
+}
+
+node::node(vector<record> k, node *l, node *r) {
+    info = k;
+    this->l = l;
+    this->r = r;
+}
+
 
 

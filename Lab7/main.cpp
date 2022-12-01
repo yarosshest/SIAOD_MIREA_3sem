@@ -5,6 +5,7 @@
 #include "LZ77.cpp"
 #include "LZ78.cpp"
 #include "ShannonFano.cpp"
+#include "Huffman.cpp"
 #include <clocale>
 using namespace std;
 int main() {
@@ -17,10 +18,10 @@ int main() {
 //    float k;
 //    k = RLE(n);
 //    cout <<' '<< n;
-    ShannonFano sf;
-    string code = sf.encode(n);
+    Huffman hf;
+    string code = hf.encode(n);
     cout << code << endl;
-    wcout << sf.decode(code) << endl;
+    wcout << hf.decode(code) << endl;
 //    cout << lz.decode();
 //    LZ78 lz;
 //    cout << lz.encode(n);

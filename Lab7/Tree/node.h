@@ -15,10 +15,12 @@ using namespace std;
 class node {
 public:
     vector<record> info;
+    explicit node(vector<record> &keys);
+    node(vector<record> k, node *l, node *r);
     node *l = nullptr;
     node *r = nullptr;
     void getCodes(map<wchar_t, string> &codes, string path);
-    explicit node(vector<record> &keys);
+    int getWeight();
     void balance(vector<record> keys, vector<record> &lef, vector<record> &right);
     void printLeft(string const & rpref = "", string const & cpref = "", string const & lpref = "");
 };
