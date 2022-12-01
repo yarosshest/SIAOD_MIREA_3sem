@@ -5,16 +5,8 @@
 #include "Auto.h"
 
 Auto::Auto(vector<char *> data) {
-    id = string(data[0]);
-    region  = string(data[1]);
-    num = string(data[2]);
-    characters = string(data[3]);
-    model = string(data[4]);
-    color = string(data[5]);
-    surname = string(data[6]);
-    name = string(data[7]);
-    address = string(data[8]);
-    date = string(data[9]);
+    strcpy(id, data[0]);
+
 }
 
 string Auto::toString() {

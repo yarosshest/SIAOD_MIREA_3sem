@@ -4,21 +4,21 @@
 #include "RLE.cpp"
 #include "LZ77.cpp"
 #include "LZ78.cpp"
-#include "Shannon-Fano.cpp"
+#include "ShannonFano.cpp"
 #include <clocale>
 using namespace std;
 int main() {
     setlocale(LC_ALL, "Russian");
-    string n;
-    n = "долделдолдилделдил";
+    wstring n;
+    n = L"долделдолдилделдил";
 //    cin >> n;
 //    float k;
 //    k = RLE(n);
 //    cout <<' '<< n;
-//    ShannonFano sf;
-//    cout << sf.encode(n) << endl;
+    ShannonFano sf;
+    cout << sf.encode(n);
 //    cout << lz.decode();
-    LZ78 lz;
-    cout << lz.encode(n);
+//    LZ78 lz;
+//    cout << lz.encode(n);
     return 0;
 }

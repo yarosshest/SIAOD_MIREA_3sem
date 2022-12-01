@@ -87,6 +87,7 @@ int grav::diikstra(int a, int b) {
         distance[i] = INT_MAX;
         visited[i] = false;
     }
+
     distance[a] = 0;
     for (int i = 0; i < size; ++i) {
         int min = INT_MAX;

@@ -10,16 +10,16 @@
 using namespace std;
 class Auto {
 public:
-    string id;
-    string model;
-    string color;
-    string date;
-    string region;
-    string num;
-    string characters;
-    string name;
-    string surname;
-    string address;
+    char id[200];
+    char model[200];
+    char color[200];
+    char date[200];
+    char region[200];
+    char num[200];
+    char characters[200];
+    char name[200];
+    char surname[200];
+    char address[200];
     explicit Auto(vector<char*> data);
     Auto();
     string toString();
