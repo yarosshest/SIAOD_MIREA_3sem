@@ -9,26 +9,30 @@ using namespace std;
 
 struct Node78{
     int link;
-    string next;
+    wstring next = L"";
 
-    string toString(){
-        return '{' + to_string(link) +','+ next +'}';
+    wstring toString(){
+        return L'{' + to_wstring(link) +L','+ next +L'}';
     }
 };
 
 struct LZ78{
-    string code;
+    wstring code;
     list<Node78> listEncode;
-    string encode(string line){
-        list<string> dict;
+
+    //Метод кодирования LZ78
+    //Пока не закончится строка, берется подстрока, которая ищется в словаре (списке), если находится, то записываем в
+    // список кодирования найденную подстроку и следующий символ из строки (если он есть) иначе записываем в список кодирования новую подстроку. Читаем следующие символы из строки
+    wstring encode(wstring line){
+        list<wstring> dict;
         list<Node78> res;
         int pos = 0;
         while (pos < line.size()){
-            string buffer = "";
+            wstring buffer = L"";
             int link = 0;
             int l = 1;
             int length = 0;
-            string next = " ";
+            wstring next = L" ";
 
             for (auto & i : dict){
 
@@ -53,7 +57,7 @@ struct LZ78{
             pos += length + 1;
         }
 
-        string result = "";
+        wstring result = L"";
         for (auto & i : res){
             result += i.toString();
         }
@@ -62,9 +66,12 @@ struct LZ78{
         return result;
     }
 
-    string decode(){
-        vector<string> dict;
-        string res = "";
+    //Метод декодирования LZ78
+    //Пока не закончится строка, берется подстрока, которая ищется в словаре (списке), если находится, то записываем в
+    // строку найденную подстроку и следующий символ из списка кодирования (если он есть) иначе записываем в строку новую подстроку. Читаем следующие символы из списка кодирования и словаря
+    wstring decode(){
+        vector<wstring> dict;
+        wstring res = L"";
         for (auto & i : listEncode){
             if (i.link == 0){
                 res += i.next;

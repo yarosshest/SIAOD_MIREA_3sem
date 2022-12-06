@@ -4,7 +4,8 @@
 #include <string>
 
 using namespace std;
-
+//функция RLE
+//принимает строку, проходя по строке если символ подряд повторяется  то считает сколько раз он повторяется  и записывает в строку
 float RLE(string &line) {
     int count = 1;
     int size = line.size();
