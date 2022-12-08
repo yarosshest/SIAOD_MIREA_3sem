@@ -80,6 +80,7 @@ struct Huffman{
             nodes.emplace_back(new node(buf, left, right));
         }
         nodes[0]->getCodes(codes, "");
+        nodes[0]->printLeft();
         for(wchar_t i : line)
             code += codes[i];
         return code;
