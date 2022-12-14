@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <chrono>
 
 using namespace std;
 
@@ -44,7 +45,7 @@ struct ingredient {
     }
 
 friend ostream& operator<<(ostream& os, const ingredient& obj) {
-        os << obj.calories << " " << obj.fat;
+        os << '|' << obj.calories << " " << obj.fat << '|';
         return os;
     }
 
@@ -52,7 +53,12 @@ friend ostream& operator<<(ostream& os, const ingredient& obj) {
 
 
 //жадный агоритм
-int greedy(vector<ingredient> p, int q){
+//список ингридиентов сортируется по уменьшению соотношения жиров к калориям. Проходя по списку, провряем самый большой игридет которые помещаетсчяя в блюдо,
+// дальше считаем, сколько калорий в блюде, и если оно не превышает заданного, то добавляем ингридиент в блюдо.
+//если же превышает, то идем дальше по списку, пока не найдем ингридиент, который поместится в блюдо.
+// в итоге получаем список ингридиентов, которые поместились в блюдо. сравниваем сумму жиров в блюде с большим ингридентом и выьираем большее.
+vector<ingredient> greedy(vector<ingredient> p, int q){
+    vector<ingredient> result;
     sort(p.begin(), p.end(), greater<>());
     int sum = 0;
     int fat = 0;
@@ -63,27 +69,68 @@ int greedy(vector<ingredient> p, int q){
         }
         if (q >= sum + i.calories) {
             sum += i.calories;
-            cout << i << endl;
+            result.push_back(i);
             fat += i.fat;
         }
     }
-    if (big.fat > fat) {
-        cout << "Max fat: " << big << endl;
-        fat = big.fat;
-    }
-    return fat;
+    if (big.fat > fat)
+        result = {big};
+    return result;
 }
 
-//обычный алгоритм
-int normal(int *a, int n, int k){
-    int res = 0;
-    for (int i = 0; i < n; i++){
-        res += a[i];
-        if (res >= k){
-            return i + 1;
+
+//рекурсивный алгоритм
+//Проверяем остались ли игридеты в списке, если нет, то в результат помещаем список игридиентов, которые поместились в блюдо.
+//если же остались, то берем первый ингридиент из списка, и проверяем помещается ли он в блюдо. если помещается, то добавляем его в блюдо и вызываем функцию рекурсивно с новым списком ингридиентов и новым количеством калорий.
+//вынимает игридиент из блюда и вызываем функцию рекурсивно с новым списком ингридиентов и новым количеством калорий.
+int recursive(vector<ingredient> p, int q, int sum, vector<vector<ingredient>> &res, vector<ingredient> &cur) {
+    if (p.empty()) {
+        res.push_back(cur);
+        return 0;
+    }
+    else{
+        ingredient i = p[0];
+        p.erase(p.begin());
+        if (sum + i.calories <= q) {
+            cur.push_back(i);
+            recursive(p, q, sum + i.calories, res, cur);
+            cur.pop_back();
+        }
+        recursive(p, q, sum, res, cur);
+    }
+    return 0;
+}
+
+//Функция  решения полным перебором
+//Вызываем рекурсивную функцию, которая возвращает список всех возможных вариантов ингридиентов, которые поместились в блюдо.
+//Проходим по списку вариантов и считаем сумму жиров в каждом варианте. выбираем вариант с максимальной суммой жиров.
+
+vector<ingredient> stupid(vector<ingredient> p, int q){
+    vector<vector<ingredient>> res;
+    vector<ingredient> cur;
+    recursive(p, q, 0, res, cur);
+    int max = 0;
+    vector<ingredient> result;
+    for (vector<ingredient> i : res) {
+        int fat = 0;
+        for (ingredient j : i) {
+            fat += j.fat;
+        }
+        if (fat > max) {
+            max = fat;
+            result = i;
         }
     }
-    return -1;
+    return result;
+}
+
+void print(vector<vector<ingredient>> res) {
+    for (vector<ingredient> i : res) {
+        for (ingredient j : i) {
+            cout << j << " ";
+        }
+        cout << endl;
+    }
 }
 
 int main() {
@@ -99,9 +146,24 @@ int main() {
     p.emplace_back(30, 800);
     p.emplace_back(40, 900);
     int q = 100;
-    int fat = greedy(p, q);
-    cout << "Sum fat: " <<fat;
 
+    wcout << L"Жадный алгоритм" << endl;
+    auto start = chrono::steady_clock::now();
+    vector<ingredient> gr = greedy(p, q);
+    auto end = chrono::steady_clock::now();
+    auto diff = end - start;
+    cout << "nanoseconds: " << chrono::duration_cast<chrono::nanoseconds>(diff).count() << endl;
+
+    print({gr});
+
+    wcout << L"Рекурсивный алгоритм" << endl;
+    start = chrono::steady_clock::now();
+    vector<ingredient> st = stupid(p, q);
+    end = chrono::steady_clock::now();
+    diff = end - start;
+    cout << "nanoseconds: " << chrono::duration_cast<chrono::nanoseconds>(diff).count() << endl;
+
+    print({st});
 
     return 0;
 }

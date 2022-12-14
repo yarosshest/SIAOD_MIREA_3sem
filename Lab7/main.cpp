@@ -30,7 +30,7 @@ void testRLE() {
 
 void testLZ77() {
     LZ77 lz77;
-    string line = "110101011001100001001";
+    string line = "0100101010010000101";
     string code = lz77.encode(line, 5);
     cout << "line: " << line << endl;
     cout << "LZ77" << endl;
@@ -41,7 +41,7 @@ void testLZ77() {
 
 void testLZ78() {
     LZ78 lz78;
-    wstring line = L"долделдолдилделдил";
+    wstring line = L"лорлоралоранранлоран";
     wstring code = lz78.encode(line);
     cout << "line: ";
     wcout << line ;
@@ -56,9 +56,7 @@ void testLZ78() {
 
 void testShannonFano() {
     ShannonFano shannonFano;
-    wstring line = L"Тише, мыши, кот на крыше, \n"
-                  "А котята ещё выше. Кот пошёл за молоком, \n"
-                  "А котята кувырком.";
+    wstring line = L"Эне-бене, рики-таки, Буль-буль-буль, Караки-шмаки Эус-деус-краснодеус бац";
     string code = shannonFano.encode(line);
     cout << "line: ";
     wcout << line ;
@@ -74,7 +72,7 @@ void testShannonFano() {
 
 void testHuffman() {
     Huffman huffman;
-    wstring line = L"Шестаков Ярослав Евгеньевич";
+    wstring line = L"Бондарь Андрей";
     string code = huffman.encode(line);
     cout << "line: ";
     wcout << line ;
@@ -104,7 +102,7 @@ int main() {
 //    testLZ77();
 //    testLZ78();
 //    testShannonFano();
-//    testHuffman();
-    testFile();
+    testHuffman();
+//    testFile();
     return 0;
 }
