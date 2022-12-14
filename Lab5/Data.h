@@ -11,15 +11,15 @@
 #include <utility>
 #include <iostream>
 using namespace std;
-class Data {
+class Manager {
     char num[200];
     char name[200];
     char address[200];
     int shift = -1;
 public:
-    Data();
-    explicit Data(bool ui);
-    Data(char num[200], char name[200], char address[200]);
+    Manager();
+    explicit Manager(bool ui);
+    Manager(char num[200], char name[200], char address[200]);
     int getNum();
     void setNum(char num[200]);
     int getShift();
@@ -27,7 +27,7 @@ public:
 
 
     string print();
-    explicit Data(vector<char*> data);
+    explicit Manager(vector<char*> data);
     bool operator==(const Data& a) const;
     bool operator!=(const Data& a) const;
     bool operator>(const Data& a) const;

@@ -6,6 +6,15 @@
 
 Auto::Auto(vector<char *> data) {
     strcpy(id, data[0]);
+    strcpy(model, data[1]);
+    strcpy(color, data[2]);
+    strcpy(date, data[3]);
+    strcpy(region, data[4]);
+    strcpy(num, data[5]);
+    strcpy(characters, data[6]);
+    strcpy(name, data[7]);
+    strcpy(surname, data[8]);
+    strcpy(address, data[9]);
 }
 
 string Auto::toString() {

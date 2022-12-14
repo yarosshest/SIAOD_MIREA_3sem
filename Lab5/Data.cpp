@@ -8,7 +8,7 @@ int Data::getNum() {
     return stoi(num);
 }
 
-Data::Data(char num[200], char name[200], char address[200]) {
+Data::Manager(char num[200], char name[200], char address[200]) {
     strcpy_s(this->num, num);
     strcpy_s(this->name, name);
     strcpy_s(this->address, address);
@@ -38,20 +38,20 @@ bool Data::operator>=(const Data &a) const {
 bool Data::operator<=(const Data &a) const {
     return stoi(num) <= stoi(a.num);
 }
-Data::Data(vector<char*> data){
+Data::Manager(vector<char*> data){
     strcpy_s(this->num, data[0]);
     strcpy_s(this->name, data[1]);
     strcpy_s(this->address, data[2]);
 }
 
-Data::Data() {
+Data::Manager() {
     strcpy_s(num, "-");
     strcpy_s(name, "-");
     strcpy_s(address, "-");
 }
 
 
-Data::Data(bool ui) {
+Data::Manager(bool ui) {
     if (ui){
         cout << "Enter num: ";
         cin >> num;

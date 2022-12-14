@@ -108,12 +108,12 @@ void HeshTable::Output() const
     }
 }
 
-int HeshTable::Search(const char *id) const
+unsigned HeshTable::Search(const char *id) const
 {
     unsigned key = Hash1(id);
-    unsigned i, index;
-    for (i = key; i < size; i++) {
-        index = i % size;
+    int i;
+    for (i = 0; i < size; i++) {
+        unsigned index = (key + i) % size;
         if (table[index] != nullptr) {
             if (0 == strcmp(table[index]->id, id)) {
                 return index;

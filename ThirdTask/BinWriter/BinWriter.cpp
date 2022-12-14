@@ -44,7 +44,7 @@ Auto* BinWriter::readAuto( int index) {
 
     if (fileCheck(nameBin)) {
         uintmax_t n = filesystem::file_size(nameBin);
-        if((index+1) * sizeof(Auto) < n) {
+        if((index+1) * sizeof(Auto) <= n) {
             ifstream in(nameBin, ios::binary);
             in.seekg(index * sizeof(Auto));
             Auto *tmp = new Auto();
@@ -89,26 +89,6 @@ void BinWriter::writeAuto(Auto au, int index) {
         out.close();
     }
 }
-
-void BinWriter::writeSource(string src) {
-    if (fileCheck(nameBin)) {
-        ifstream file(nameBin, ios::binary);
-        ofstream fileSrc(src, ios::out | ios::trunc);
-        if (!file) {
-            cout << "File doesn't exist\n";
-            file.close();
-            fileSrc.close();
-        } else {
-            Auto *tmp = new Auto();
-            while (file.read((char *) tmp, sizeof(Auto)))
-                fileSrc << tmp->toString() << endl;
-
-            file.close();
-            fileSrc.close();
-        }
-    }
-}
-
 bool BinWriter::fileCheck(string name) const {
     ifstream fileSrc(name);
     if (!fileSrc)
@@ -160,8 +140,17 @@ int BinWriter::GetSize() const {
 
 BinWriter::BinWriter(string name, string str) {
     nameBin = name;
-
     writeBin(str);
+}
+
+int BinWriter::addAuto(Auto au) {
+    if (fileCheck(nameBin)) {
+        fstream out(nameBin, ios::binary | ios::out | ios::app);
+        out.write((char *) &au, sizeof(Auto));
+        out.close();
+        return (out.tellg() / sizeof(Auto)) - 1;
+    }
+    return -1;
 }
 
 

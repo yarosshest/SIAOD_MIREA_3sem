@@ -9,30 +9,33 @@ int testhesh()
 {
 	HeshTable ht;
 
-	ht.Insert("hellow", 1);
+	ht.Insert("test", 1);
 	ht.Output();
-	ht.Insert("?", 999);
-	ht.Insert("?", 12);
-	ht.Insert("hellow", 1);
-	ht.Insert("hellow", 1);
-	ht.Insert("hellow", 1);
+	ht.Insert("test_end", 999);
+	ht.Insert("test_midl", 12);
+	ht.Insert("test", 1);
+	ht.Insert("test", 1);
+	ht.Insert("test", 1);
 	ht.Output();
 
 	for (int i = 0; i < 10; i++) {
-		ht.Insert("aa", i);
+		ht.Insert("test_for", i);
 	}
 
 	ht.Output();
 
-	cout << "Remove '?'" << endl;
-	ht.Remove("?");
+	cout << "Remove 'test_midl'" << endl;
+	ht.Remove("test_midlt");
 
 	ht.Output();
 
 	string line;
 	cout << "Entry key: ";
 	cin >> line;
-	cout << "===========" << ht.GetShift(line.c_str()) << endl;
+
+	cout << "===========" << endl;
+    cout << ht.GetShift(line.c_str()) << endl;
+    cout << "===========" << endl;
 
 	ht.Output();
 

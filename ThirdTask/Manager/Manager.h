@@ -1,5 +1,5 @@
-#ifndef DATA_FILE_H
-#define DATA_FILE_H
+#ifndef MANAGER_H
+#define MANAGER_H
 
 #include <fstream>
 #include <vector>

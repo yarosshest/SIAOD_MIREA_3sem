@@ -19,7 +19,7 @@ public:
 	void Output() const;
 private:
 	unsigned Hash1(const char *id) const;
-	int Search(const char *id) const;
+    unsigned Search(const char *id) const;
 	void ReHash();
 };
 

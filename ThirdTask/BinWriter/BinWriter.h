@@ -23,9 +23,9 @@ public:
     BinWriter(string name, string str);
     int GetSize() const;
     void writeBin(string name);
-    void writeSource( string src);
     void readBin( vector<Auto> &autos);
     void writeAuto(Auto au, int index);
+    int addAuto(Auto au);
     void outputBin() const;
     Auto* readAuto(int index);
     void dellAuto(int index);

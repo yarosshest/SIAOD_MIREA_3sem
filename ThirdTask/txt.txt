@@ -1,6 +1,0 @@
-0;77;456;fgh;a8;blue;Ivanov;Ivan;Pushkina 8;24.05.2002
-1;34;764;fhg;gy5;red;Shumakov;Ivan;Anohino 69;20.06.2022
-2;56;343;fgh;jr5;zheltyj;Sovickij;Andrej;Piter 44;11.03.2042
-3;43;764;fgh;lw2;sinij;Zhujko;Semen;Moskva 023;23.07.2017
-4;28;343;fgh;fkw;fioletovyj;Mihoajdo;Oleg;Erevan 369;20.06.2022
-5;03;821;fgh;wef0;goluboj;Onadzuko;Velikij;Kazan 69;20.06.2022
