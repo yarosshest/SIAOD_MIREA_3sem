@@ -4,7 +4,7 @@
 
 #ifndef SIAOD_BINWRITER_H
 #define SIAOD_BINWRITER_H
-#include "Auto.h"
+#include "../Auto.h"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -29,8 +29,6 @@ public:
     void outputBin() const;
     Auto* readAuto(int index);
     void dellAuto(int index);
-    void rep(string date,string reg ,string num, string buk);
-    void showMod(string date,string mod);
     bool fileCheck(string name) const;
     int getIndexById(int id);
 };

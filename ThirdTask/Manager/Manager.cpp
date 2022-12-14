@@ -1,27 +1,26 @@
-#include <iostream>
-#include "Data.h"
+#include "Manager.h"
 
 using namespace std;
 
-void Data::SaveEntry(int shift)
+void Manager::SaveEntry(int shift)
 {
 	Auto ph = *file.readAuto(shift);
-	table.Insert(ph.id.c_str(), shift);
+	table.Insert(ph.id, shift);
 }
 
-void Data::Remove(const char *id)
+void Manager::Remove(const char *id)
 {
-	file.dellAuto((int) id);
+	file.dellAuto(stoi(id));
 	table.Remove(id);
 }
 
-Auto Data::Search(const char *id)
+Auto Manager::Search(const char *id)
 {
 	int shift = table.GetShift(id);
 	return *file.readAuto(shift);
 }
 
-void Data::Output() const
+void Manager::Output() const
 {
 	cout << "=====" << endl;
 	cout << "+@+@+File: " << endl;
@@ -31,6 +30,6 @@ void Data::Output() const
 	cout << "=====" << endl;
 }
 
-Data::Data(string bin, string txt) : table() {
+Manager::Manager(string bin, string txt) : table() {
     file = BinWriter(bin, txt);
 }

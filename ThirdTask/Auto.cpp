@@ -6,15 +6,52 @@
 
 Auto::Auto(vector<char *> data) {
     strcpy(id, data[0]);
-
 }
 
 string Auto::toString() {
-    return id + ";" + region + ";" + num + ";" + characters + ";" + model + ";" + color + ";" + surname + ";" + name + ";" + address + ";" + date;
+    string s = "";
+    s += id;
+    s += " ";
+    s += model;
+    s += " ";
+    s += color;
+    s += " ";
+    s += date;
+    s += " ";
+    s += region;
+    s += " ";
+    s += num;
+    s += " ";
+    s += characters;
+    s += " ";
+    s += name;
+    s += " ";
+    s += surname;
+    s += " ";
+    s += address;
+    return s;
 }
 
 string Auto::out() {
-    return "region:" +region + " num:" + num + " characters:" + characters + " model:" + model + " color:" + color + " surname:" + surname + " name:" + name + " address:" + address + " date:" + date;
+    string s = "region: ";
+    s += region;
+    s += " num: ";
+    s += num;
+    s += " characters: ";
+    s += characters;
+    s += " date: ";
+    s += date;
+    s += " model: ";
+    s += model;
+    s += " color: ";
+    s += color;
+    s += " name: ";
+    s += name;
+    s += " surname: ";
+    s += surname;
+    s += " address: ";
+    s += address;
+    return s;
 }
 
 bool Auto::operator==(const Auto& rhs) const {
@@ -31,14 +68,14 @@ bool Auto::operator==(const Auto& rhs) const {
 }
 
 Auto::Auto() {
-    id = "";
-    model = "";
-    color = "";
-    date = "";
-    region = "";
-    num = "";
-    characters = "";
-    name = "";
-    surname = "";
-    address = "";
+    strcpy(id, "");
+    strcpy(model, "");
+    strcpy(color, "");
+    strcpy(date, "");
+    strcpy(region, "");
+    strcpy(num, "");
+    strcpy(characters, "");
+    strcpy(name, "");
+    strcpy(surname, "");
+    strcpy(address, "");
 }

@@ -90,31 +90,6 @@ void BinWriter::writeAuto(Auto au, int index) {
     }
 }
 
-void BinWriter::rep(string date,string reg ,string num, string buk)
-{
-    if (fileCheck(nameBin)) {
-        vector<Auto> result = vector<Auto>();
-        readBin(result);
-        int index = 0;
-        for (Auto i: result) {
-            if (i.region == reg && i.num == num && i.characters == buk) {
-                i.date = date;
-                writeAuto(i, index);
-            }
-            index++;
-        }
-    }
-}
-
-void BinWriter::showMod(string date,string mod)
-{
-    vector<Auto> result = vector<Auto>();
-    readBin(result);
-    for(Auto i : result)
-        if(i.date == date && i.model == mod )
-            cout << i.toString() << endl;
-}
-
 void BinWriter::writeSource(string src) {
     if (fileCheck(nameBin)) {
         ifstream file(nameBin, ios::binary);

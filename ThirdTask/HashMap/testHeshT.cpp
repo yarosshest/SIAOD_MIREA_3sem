@@ -5,7 +5,7 @@
 using namespace std;
 
 
-int main()
+int testhesh()
 {
 	HeshTable ht;
 

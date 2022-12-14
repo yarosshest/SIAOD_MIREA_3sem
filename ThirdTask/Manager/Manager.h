@@ -4,17 +4,18 @@
 #include <fstream>
 #include <vector>
 #include <string>
-#include "BinWriter.h"
-#include "Auto.h"
-#include "HashMap/HeshTable.h"
-
+#include "../BinWriter/BinWriter.h"
+#include "../Auto.h"
+#include "../HashMap/HeshTable.h"
+#include <iostream>
+#include <cstring>
 using namespace std;
-class Data
+class Manager
 {
     BinWriter file;
 	HeshTable table;
 public:
-    Data(string bin, string txt);
+    Manager(string bin, string txt);
 	void SaveEntry(const int shift);
 	void Remove(const char *id);
 	Auto Search(const char *id);
