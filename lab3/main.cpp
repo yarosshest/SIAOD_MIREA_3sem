@@ -6,10 +6,12 @@ using namespace std;
 int main(int argc, char **argv)
 {
     setlocale(LC_ALL, "Russian");
-//    testhesh();
+    testhesh();
     cout << "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=" << endl;
-//    testBin();
-//    testManager();
+    testBin();
+    cout << "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=" << endl;
+    testManager();
+    cout << "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=" << endl;
     testBigFile();
     return 0;
 }

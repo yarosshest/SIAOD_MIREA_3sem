@@ -37,10 +37,13 @@ void Manager::Output() const
 	cout << "=====" << endl;
 }
 
+
 Manager::Manager(string bin, string txt) : table() {
     file = BinWriter(bin, txt);
 }
 
+//Метод вставки файла
+//Вставка всех записей файла в таблицу
 void Manager::pasteFile() {
     vector<Auto> autos = file.getAutos();
     for (int i = 0; i < autos.size(); i++) {
