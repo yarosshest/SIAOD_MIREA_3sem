@@ -5,7 +5,7 @@
 #include "Manager.h"
 
 int testManager(){
-    Manager m = Manager(R"(C:\Users\yaros\CLionProjects\SIAOD_MIREA_3sem\ThirdTask\bin)", R"(C:\Users\yaros\CLionProjects\SIAOD_MIREA_3sem\ThirdTask\txt.txt)");
+    Manager m = Manager(R"(C:\Users\yaros\CLionProjects\SIAOD_MIREA_3sem\lab3\bin)", R"(C:\Users\yaros\CLionProjects\SIAOD_MIREA_3sem\lab3\txt.txt)");
     cout << "====================" << endl;
     m.Output();
     m.pasteFile();
@@ -23,7 +23,7 @@ int testManager(){
 }
 
 int testBigFile(){
-    Manager m = Manager(R"(C:\Users\yaros\CLionProjects\SIAOD_MIREA_3sem\ThirdTask\bin2)", R"(C:\Users\yaros\CLionProjects\SIAOD_MIREA_3sem\ThirdTask\test_100000.txt)");
+    Manager m = Manager(R"(C:\Users\yaros\CLionProjects\SIAOD_MIREA_3sem\lab3\bin2)", R"(C:\Users\yaros\CLionProjects\SIAOD_MIREA_3sem\lab3\test_100000.txt)");
     m.pasteFile();
     cout << "====================" << endl;
     cout << "Start of file" << endl;

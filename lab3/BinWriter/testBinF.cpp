@@ -6,7 +6,7 @@
 #include "../Auto.h"
 int testBin(){
     BinWriter bw("test.bin");
-    bw.writeBin(R"(C:\Users\yaros\CLionProjects\SIAOD_MIREA_3sem\ThirdTask\txt.txt)");
+    bw.writeBin(R"(C:\Users\yaros\CLionProjects\SIAOD_MIREA_3sem\lab3\txt.txt)");
     bw.outputBin();
     cout << "====================" << endl;
     char test[200] = "test";
