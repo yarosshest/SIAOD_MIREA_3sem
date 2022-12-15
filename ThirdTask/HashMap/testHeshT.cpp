@@ -29,9 +29,7 @@ int testhesh()
 
 	ht.Output();
 
-	string line;
-	cout << "Entry key: ";
-	cin >> line;
+	string line= "test";
 
 	cout << "===========" << endl;
     cout << ht.GetShift(line.c_str()) << endl;

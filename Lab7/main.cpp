@@ -41,7 +41,7 @@ void testLZ77() {
 
 void testLZ78() {
     LZ78 lz78;
-    wstring line = L"лорлоралоранранлоран";
+    wstring line = L"долделдолдилделдил";
     wstring code = lz78.encode(line);
     cout << "line: ";
     wcout << line ;
@@ -51,12 +51,16 @@ void testLZ78() {
     wcout << code ;
     cout << endl;
     cout << "compression: " << code.size()/line.size() << endl;
+    cout << "decompression: ";
+    wcout << lz78.decode();
 }
 
 
 void testShannonFano() {
     ShannonFano shannonFano;
-    wstring line = L"Эне-бене, рики-таки, Буль-буль-буль, Караки-шмаки Эус-деус-краснодеус бац";
+    wstring line = L"Тише, мыши, кот на крыше, \n"
+                   "А котята ещё выше. Кот пошёл за молоком, \n"
+                   "А котята кувырком.";
     string code = shannonFano.encode(line);
     cout << "line: ";
     wcout << line ;
@@ -72,7 +76,7 @@ void testShannonFano() {
 
 void testHuffman() {
     Huffman huffman;
-    wstring line = L"Бондарь Андрей";
+    wstring line = L"Шестаков Ярослав Евгеньевич";
     string code = huffman.encode(line);
     cout << "line: ";
     wcout << line ;
@@ -100,9 +104,9 @@ int main() {
     setlocale(LC_ALL, "Russian");
 //    testRLE();
 //    testLZ77();
-//    testLZ78();
+    testLZ78();
 //    testShannonFano();
-    testHuffman();
+//    testHuffman();
 //    testFile();
     return 0;
 }

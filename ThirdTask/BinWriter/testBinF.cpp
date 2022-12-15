@@ -10,9 +10,7 @@ int testBin(){
     bw.outputBin();
     cout << "====================" << endl;
     char test[200] = "test";
-    char testN[200] = "6";
     vector<char*> data = vector<char*>();
-    data.push_back(testN);
     data.push_back(test);
     data.push_back(test);
     data.push_back(test);
@@ -26,10 +24,10 @@ int testBin(){
     bw.addAuto(au);
     bw.outputBin();
     cout << "====================" << endl;
-    bw.dellAuto(5);
+    bw.dellAuto("03821fgh");
     bw.outputBin();
     cout << "====================" << endl;
-    Auto out = *bw.readAuto(5);
+    Auto out = *bw.readAuto(3);
     cout << out.out() << endl;
-
+    return 0;
 }

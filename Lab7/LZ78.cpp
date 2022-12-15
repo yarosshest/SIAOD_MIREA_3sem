@@ -39,7 +39,7 @@ struct LZ78{
                 int j = 0;
                 while (i[j] == line[pos + j])
                     j++;
-                if (j > length && j != 0){
+                if (j > length ){
                     length = j;
                     link = l;
                     next = line[pos + j];
@@ -81,6 +81,7 @@ struct LZ78{
                 dict.push_back(dict.front() + i.next);
             }
         }
+        wcout << res;
         return res;
     }
 };

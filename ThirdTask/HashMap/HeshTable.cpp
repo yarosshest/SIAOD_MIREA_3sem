@@ -4,6 +4,8 @@
 
 using namespace std;
 
+//Конструктор записи
+//Создание записи с заданной позицией и ключом
 HeshTable::Item::Item(const char *id, const int shift): shift(shift)
 {
     char *tmp_id = new char[strlen(id)];
@@ -11,6 +13,8 @@ HeshTable::Item::Item(const char *id, const int shift): shift(shift)
     this->id = tmp_id;
 }
 
+//Конструктор таблицы
+//Создание таблицы с заданным размером и заполнение нулями
 HeshTable::HeshTable(): size(5)
 {
     table = new Item*[size];
@@ -19,6 +23,8 @@ HeshTable::HeshTable(): size(5)
     }
 }
 
+//Метод вставки
+//Указатетель помещается на место с заданным ключом если оно пусто то вставляется в эту ящейку , иначе вызвается вставляеться в следующию пустую ячейку
 void HeshTable::Insert(const char *id, const int shift)
 {
     unsigned key = Hash1(id);
@@ -35,6 +41,9 @@ void HeshTable::Insert(const char *id, const int shift)
         ReHash();
     }
 }
+
+//Метод удаления
+//Удаляет запись с заданным ключом
 int HeshTable::Remove(const char *id)
 {
     unsigned key = Hash1(id);
@@ -53,6 +62,8 @@ int HeshTable::Remove(const char *id)
     return -1;
 }
 
+//Метод поиска
+//Возвращает позицию записи с заданным ключом
 int HeshTable::GetShift(const char *id) const
 {
     int index = Search(id);
@@ -61,6 +72,8 @@ int HeshTable::GetShift(const char *id) const
     return table[index]->shift;
 }
 
+//Метод рехеширования
+//Увеличивает размер таблицы в 2 раза и перестраивает таблицу
 void HeshTable::ReHash()
 {
     unsigned old_size = size;
@@ -80,6 +93,9 @@ void HeshTable::ReHash()
     delete [] tmp_table;
 }
 
+
+//Метод хеширования
+//Возвращает хеш ключа
 unsigned HeshTable::Hash1(const char *id) const
 {
     unsigned key = 0x0;
@@ -98,6 +114,9 @@ unsigned HeshTable::Hash1(const char *id) const
     return key;
 }
 
+
+//Метод вывода таблицы
+//Выводит таблицу на экран
 void HeshTable::Output() const
 {
     for (unsigned i = 0; i < size; i++) {
@@ -108,6 +127,8 @@ void HeshTable::Output() const
     }
 }
 
+//Метод поиска
+//Возвращает индекс записи с заданным ключом
 unsigned HeshTable::Search(const char *id) const
 {
     unsigned key = Hash1(id);
@@ -122,3 +143,4 @@ unsigned HeshTable::Search(const char *id) const
     }
     return -1;
 }
+

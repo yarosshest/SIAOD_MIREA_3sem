@@ -62,7 +62,7 @@ Auto* BinWriter::readAuto( int index) {
 
 
 
-void BinWriter::dellAuto(int id) {
+void BinWriter::dellAuto(char* id) {
     int ind = getIndexById(id);
     if (ind < 0){
         cout << "No such id" << endl;
@@ -102,14 +102,17 @@ bool BinWriter::fileCheck(string name) const {
     }
 }
 
-int BinWriter::getIndexById(int id) {
+int BinWriter::getIndexById(char* id) {
     if (fileCheck(nameBin)) {
         ifstream in(nameBin, ios::binary);
         Auto *tmp = new Auto();
         int index = 0;
         while (in.read((char *) tmp, sizeof(Auto))) {
-            if (stoi(tmp->id) == id)
+            char* tmpId = tmp->getNumber();
+            if (strcmp(tmpId, id) == 0){
+                in.close();
                 return index;
+            }
             index++;
         }
         in.close();
@@ -151,6 +154,18 @@ int BinWriter::addAuto(Auto au) {
         return (out.tellg() / sizeof(Auto)) - 1;
     }
     return -1;
+}
+
+vector<Auto> BinWriter::getAutos() {
+    vector<Auto> autos;
+    if (fileCheck(nameBin)) {
+        uintmax_t n = filesystem::file_size(nameBin);
+        for (int i = 0; (i + 1) * sizeof(Auto) <= n; i++) {
+            Auto *tmp = readAuto(i);
+            autos.push_back(*tmp);
+        }
+    }
+    return autos;
 }
 
 

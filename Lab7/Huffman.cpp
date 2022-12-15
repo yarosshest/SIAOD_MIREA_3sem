@@ -20,6 +20,8 @@ struct Huffman{
         return oput/iput;
     }
 
+    //функция вычсления средний длины кода
+    //Суммируется среднаяя дляна каждого символа
     float getMedian(){
         float median = 0;
         for (pair<wchar_t, string> i: codes) {
@@ -29,6 +31,8 @@ struct Huffman{
         return median;
     }
 
+    //функция вычсления дисперсии
+    //Суммируется дисперсия каждого символа в строке по формуле
     float getDispersia(){
         float average = getMedian();
         float disp = 0;

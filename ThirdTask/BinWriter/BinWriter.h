@@ -28,9 +28,10 @@ public:
     int addAuto(Auto au);
     void outputBin() const;
     Auto* readAuto(int index);
-    void dellAuto(int index);
+    void dellAuto(char* index);
     bool fileCheck(string name) const;
-    int getIndexById(int id);
+    int getIndexById(char* id);
+    vector<Auto> getAutos();
 };
 
 

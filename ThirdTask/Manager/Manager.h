@@ -19,8 +19,9 @@ public:
 	void SaveEntry(const int shift);
 	void Remove(const char *id);
 	Auto Search(const char *id);
+    int SearchFile(const char *id);
 	void Output() const;
-    unsigned GetSizeFile() const { return file.GetSize(); }
+    void pasteFile();
 };
 
 #endif

@@ -5,39 +5,36 @@
 #include "Auto.h"
 
 Auto::Auto(vector<char *> data) {
-    strcpy(id, data[0]);
-    strcpy(model, data[1]);
-    strcpy(color, data[2]);
-    strcpy(date, data[3]);
-    strcpy(region, data[4]);
-    strcpy(num, data[5]);
-    strcpy(characters, data[6]);
-    strcpy(name, data[7]);
-    strcpy(surname, data[8]);
-    strcpy(address, data[9]);
+    strcpy(region, data[0]);
+    strcpy(num, data[1]);
+    strcpy(characters, data[2]);
+    strcpy(model, data[3]);
+    strcpy(color, data[4]);
+    strcpy(name, data[5]);
+    strcpy(surname, data[6]);
+    strcpy(address, data[7]);
+    strcpy(date, data[8]);
 }
 
 string Auto::toString() {
     string s = "";
-    s += id;
-    s += " ";
-    s += model;
-    s += " ";
-    s += color;
-    s += " ";
-    s += date;
-    s += " ";
     s += region;
     s += " ";
     s += num;
     s += " ";
     s += characters;
     s += " ";
+    s += model;
+    s += " ";
+    s += color;
+    s += " ";
     s += name;
     s += " ";
     s += surname;
     s += " ";
     s += address;
+    s += " ";
+    s += date;
     return s;
 }
 
@@ -48,8 +45,6 @@ string Auto::out() {
     s += num;
     s += " characters: ";
     s += characters;
-    s += " date: ";
-    s += date;
     s += " model: ";
     s += model;
     s += " color: ";
@@ -60,12 +55,13 @@ string Auto::out() {
     s += surname;
     s += " address: ";
     s += address;
+    s += " date: ";
+    s += date;
     return s;
 }
 
 bool Auto::operator==(const Auto& rhs) const {
-    return id == rhs.id &&
-           model == rhs.model &&
+    return model == rhs.model &&
            color == rhs.color &&
            date == rhs.date &&
            region == rhs.region &&
@@ -77,7 +73,6 @@ bool Auto::operator==(const Auto& rhs) const {
 }
 
 Auto::Auto() {
-    strcpy(id, "");
     strcpy(model, "");
     strcpy(color, "");
     strcpy(date, "");
@@ -87,4 +82,12 @@ Auto::Auto() {
     strcpy(name, "");
     strcpy(surname, "");
     strcpy(address, "");
+}
+
+char* Auto::getNumber() {
+    char *s = new char[600];
+    strcpy(s, region);
+    strcat(s, num);
+    strcat(s, characters);
+    return s;
 }
